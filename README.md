@@ -3,7 +3,7 @@
 > **非官方社群翻譯（Unofficial Community Translation）**
 > 本專案為 Nathan Lambert《[Reinforcement Learning from Human Feedback](https://rlhfbook.com)》（2026-07-01 版）的繁體中文（zh-TW）全譯本，由台灣 [Twinkle AI Community](https://github.com/ai-twinkle) 翻譯維護，已獲原作者知悉（[rlhf-book#472](https://github.com/natolambert/rlhf-book/issues/472)）。依 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant) 授權，僅供學習研究、不得作商業用途。支持原作者請購買[實體書](https://rlhfbook.com)。
 
-**📖 線上閱讀：<https://ai-twinkle.github.io/rlhf-book-zh-tw/>**
+**📖 線上閱讀：<https://apps.twinkleai.tw/rlhf-book-zh-tw/>**
 
 除了全書翻譯，每一章都配備一個**互動實驗**，讓讀者能動手操作該章的核心概念——從 Bradley-Terry 偏好機率、PPO 裁剪目標、GRPO 群組優勢，到 DPO 損失曲面與前向／反向 KL 的收斂行為。
 
@@ -66,7 +66,7 @@ This is an **unofficial Traditional Chinese (zh-TW) community translation** of *
 
 Beyond the full translation, every chapter ships with an **interactive lab** — a hands-on demo of the chapter's core concept (Bradley-Terry explorer, PPO clipping / GRPO group-advantage playground, DPO loss explorer, forward/reverse KL visualizer, and more).
 
-**Read online: <https://ai-twinkle.github.io/rlhf-book-zh-tw/>**
+**Read online: <https://apps.twinkleai.tw/rlhf-book-zh-tw/>**
 
 Licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/), same as the original chapters. Non-commercial; full attribution to the original author. Please support the author by purchasing the [print edition](https://rlhfbook.com).
 
