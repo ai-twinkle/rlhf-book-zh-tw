@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>附錄 C　實務議題 — RLHF 中文版</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">RLHF 中文版<span>從人類回饋中強化學習</span></a>
+  <nav class="chapnav"><a href="appb.html">← 附錄 B</a><span class="chapnav-current">附錄 C　實務議題</span><a href="bibliography.html">參考文獻 →</a></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav id="toc" class="toc"><h2>本章目錄</h2></nav></aside>
+  <main class="main">
+    <div id="lab-banner"></div>
+    <article id="content" class="prose"></article>
+    <section id="lab" class="lab" hidden>
+      <h2 class="lab-title">🧪 互動實驗室</h2>
+      <div id="lab-intro"></div>
+      <div id="lab-root"></div>
+    </section>
+    <nav class="pager"><a class="prev" href="appb.html"><span class="dir">← 上一章</span><div class="ttl">附錄 B　不只是「風格」</div></a><a class="next" href="bibliography.html"><span class="dir">下一章 →</span><div class="ttl">參考文獻　參考文獻</div></a></nav>
+    <footer class="pagefoot">本站為 <a href="https://github.com/ai-twinkle">Twinkle AI Community</a>（台灣）的<strong>非官方社群翻譯</strong>（unofficial community translation）· 譯自 Nathan Lambert,《Reinforcement Learning from Human Feedback》（<a href="https://rlhfbook.com">rlhfbook.com</a>）· 依 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant">CC BY-NC-SA 4.0</a> 授權，僅供學習研究、不得作商業用途。</footer>
+  </main>
+</div>
+<script type="text/markdown" id="chapter-md">
+# 附錄 C　實務議題（Practical Issues）
+
+> 譯自 Nathan Lambert, *Reinforcement Learning from Human Feedback*（rlhfbook.com），2026-07-01 版，原文第 236–238 頁。
+
+本附錄涵蓋大規模執行後訓練（post-training）實驗時的實務考量。內容採取經驗教訓清單的形式，而非一篇連貫的敘事。
+
+## C.1 後訓練的運算成本（Compute Costs of Post-Training）
+
+估算後訓練執行成本有兩種不同的角度。最大的成本在於開發配方（recipe），其運算量很容易達到最終幾次訓練執行的 10 倍到 100 倍。次要成本則較容易衡量，指的是徹底落實一套配方的成本，包括跑多組隨機種子（seed）、仔細的評估、可能遭遇的工程麻煩等等。
+
+就第一種成本而言，為了開發像 Tülu 3 [6] 這樣的後訓練配方，團隊在得到最終模型之前，在 7B 規模上執行了數以千計的實驗與評估。
+
+至於最終的訓練執行，Olmo 3 的報告對訓練最終 32B Think 模型所涉及的工作有詳細的記述 [18]：
+
+> 後訓練遵循一種不同的作業模式：我們會將每個階段執行多次，掃描（sweep）學習率（learning rate）與其他超參數（hyperparameters）。後訓練——尤其是強化學習（RL）——的理論尚不成熟，因此我們必須執行多次實驗，才能為給定的基礎模型找出最佳超參數。我們希望在未來的工作中解決這個問題。
+>
+> 在後訓練期間，檢查點（checkpoint）評估消耗了較大比例的運算資源，部分原因是推理模型（reasoning models）在核心基準測試（benchmark）上會產生很長的生成內容。在監督式微調（SFT）方面，我們掃描了四個候選學習率，每個都使用 256 顆 GPU，平行執行 36 小時。接著大約花了 12 小時進行評估、合併與檢查點確認，總計約兩天。直接偏好最佳化（DPO）訓練每次執行所需時間較短（每項任務在 64 顆 GPU 上完成完整學習率掃描約需 18 小時），但實務上因叢集不穩定而延長到好幾天。初版 Olmo 3 Think 32B 的最終 RL 訓練執行歷時約 5 天，其中至少有一天的訓練時間因穩定性問題而損失。在 Olmo 3 首次發布之後，我們將表現最佳的 RL 訓練在 224 顆 GPU 上又持續執行了 21 天，產出 Olmo 3.1 Think 32B。
+
+隨著擴展強化學習規模逐漸成為更標準的做法，這種情況將再次改變 [17]。延續上面的例子：原本 Olmo 3 32B Think 的後訓練只花了幾週，但為了發布改進版的 Olmo 3.1 32B Think 模型，團隊需要以可驗證獎勵的強化學習（RLVR, Reinforcement Learning with Verifiable Rewards）額外訓練 3.5 週。這在*時間*上是相當可觀的成本，更甚於總運算量。
+
+## C.2 評估變異數（Evaluation Variance）
+
+後訓練中一項被低估的挑戰是評估變異數（evaluation variance），尤其隨著推理模型的興起——這類模型需要使用溫度（temperature）大於 0 的取樣才能取得最佳評估分數。只要對模型進行任何形式的取樣，輸出就會變得更不穩定。不同基準測試的穩定性特性差異極大，原因包括提示（prompt）難度的變異、評估集中提示的數量、受訓模型本身的脆弱程度等等。
+
+在 Olmo 3 的開發期間，團隊追蹤了用於評估推理模型的各項評估的變異數。下表列出各評估的標準差（standard deviation），計算方式為 14 個模型各執行 3 次的標準差平均值（先取每個模型的變異，再對每項評估取平均）：
+
+表 9：評估基準測試在多次推論執行之間的標準差，依穩定性分類（資料來自 Olmo 3）。
+
+| 類別 | 基準測試 | 標準差 |
+| --- | --- | --- |
+| 高變異（High Variance） | GPQA | 1.48 |
+| | AlpacaEval 3 | 1.24 |
+| | IFEval | 0.88 |
+| 穩定（Stable） | ZebraLogic | 0.56 |
+| | Omega | 0.56 |
+| | AIME 24（Avg@32） | 0.54 |
+| | HumanEvalPlus | 0.46 |
+| | AgiEval | 0.43 |
+| | BigBenchHard | 0.39 |
+| 非常穩定（Very Stable） | LiveCodeBench（Avg@10） | 0.29 |
+| | MBPPPlus | 0.27 |
+| | MATH | 0.25 |
+| | MMLU | 0.22 |
+| | PopQA | 0.16 |
+
+某些評估（例如 LiveCodeBench）既有雜訊又便宜（因為評估集中的提示數量不多），因此只要對每個模型重複執行該評估 10 次，就能讓它從高變異組別移到穩定的區間。這件事對每一項評估都可以做，但成本很容易迅速膨脹。
+
+我們也觀察到評估設定中的其他變異來源，例如批次大小（batch size）、vLLM 內的張量平行（tensor parallel）設定（例如基準線採用 TP=2），以及在不同基礎設施上取樣長篇生成內容時其他敏感的數值因素。對推理模型（reasoners）而言，變異無所不在。
+
+## C.3 管理訓練效能變異（Managing Training Performance Variance）
+
+在本書討論過的所有後訓練配方與工具中，最終模型的效能都存在不可忽視的變異。理解這種變異的分布、來源與影響，是打造強大模型的關鍵。訓練最終模型的目標，是透過改變訓練參數與隨機種子來取樣許多個點，以獲得可能範圍內最強的模型。請注意，這是在「模型*真的*變得更好」與「僅僅是靠評估雜訊重抽而占到便宜」之間取得平衡。
+
+前一節聚焦在*評估*雜訊，而更棘手的雜訊來源是訓練的不確定性。評估雜訊可以透過對給定檢查點執行更多測試來管理（一致地降低雜訊），但模型只會被訓練一次，因此可以從正向的離群值（outlier）中*受益*。
+
+實務上，訓練團隊會採取許多步驟，以便從訓練配方中榨取最大可能的價值：
+
+1. 對每一次最終模型的訓練執行，掃描學習率、批次大小等核心最佳化數值。例如，面對一個新的基礎模型，我會建議先在寬廣的區間內跑 10 個學習率，確定自己落在最佳範圍內，然後再於更窄的最佳視窗內重新執行。
+2. 在表現最好的幾組設定上跑多個隨機種子。隨機種子可能對最終模型產生實質影響，值得為此投入運算資源。
+3. 模型合併（model merging）已確立為打造強大模型的關鍵工具。合併有很多種做法，從合併同一份資料上訓練的不同檢查點，到合併針對特定領域的專門模型都有。整體而言，合併被視為最終配方中強大而簡單的工具，但對於如何在配方中預先準備一個模型以供後續合併，尚未建立明確的最佳實務 [409]。
+
+## C.4 辨識異常的訓練任務（Identifying Bad Training Jobs）
+
+訓練模型時，有一個重要且必須建立的簡單直覺：模型問題有不同的類型。你希望把大部分時間花在「目前的資料、演算法或配方就是不夠好」這類問題上。另一方面，在建置新配方的過程中，也有很多時候某些方法根本就是壞掉的。
+
+理解這一點的最佳方式，是在一套大致固定的評估套件上評估許多模型。如此一來，你會逐漸培養出直覺，知道哪些測試很難被後訓練介入手段撼動（通常是知識密集型的評估，例如 MMLU）。當後訓練設定中有東西非常、*非常*嚴重地壞掉時，這些大致穩定的評估在一次訓練任務中往往會掉 10 到 20 分。這是開發工具鏈時最有用的訊號之一！
+
+</script>
+<script src="../assets/marked.min.js"></script>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script src="../assets/widgets/appc.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# 原文 PDF 不隨庫散布——請至 rlhfbook.com 取得
+RL_from_human_feedback.pdf
+
+.DS_Store
+__pycache__/
+*.pyc
+.claude/

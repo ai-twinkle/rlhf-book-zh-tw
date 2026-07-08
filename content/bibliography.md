@@ -1,0 +1,392 @@
+# 參考文獻（Bibliography）
+
+> 依原書保留原文，不另翻譯。編號對應各章引用標記 [N]。
+
+1. P. F. Christiano, J. Leike, T. Brown, M. Martic, S. Legg, and D. Amodei, “Deep reinforcement learning from human preferences,” Advances in neural information processing systems, vol. 30, 2017.
+2. N. Stiennon et al., “Learning to summarize with human feedback,” Advances in Neural Information Processing Systems, vol. 33, pp. 3008–3021, 2020.
+3. L. Ouyang et al., “Training language models to follow instructions with human feedback,” Advances in neural information processing systems, vol. 35, pp. 27730–27744, 2022.
+4. R. Nakano et al., “Webgpt: Browser-assisted question-answering with human feedback,” arXiv preprint arXiv:2112.09332, 2021.
+5. Y. Bai et al., “Training a helpful and harmless assistant with reinforcement learning from human feedback,” arXiv preprint arXiv:2204.05862, 2022.
+6. N. Lambert et al., “Tulu 3: Pushing frontiers in open language model post-training,” arXiv preprint arXiv:2411.15124, 2024.
+7. J. Dai et al., “Safe RLHF: Safe reinforcement learning from human feedback,” arXiv preprint arXiv:2310.12773, 2023, Available: https://arxiv.org/abs/2310.12773
+8. R. Kirk et al., “Understanding the effects of rlhf on llm generalisation and diversity,” in International conference on learning representations (ICLR), 2024.
+9. T. Chu et al., “Sft memorizes, rl generalizes: A comparative study of foundation model post-training,” in International conference on machine learning (ICML), 2025.
+10. P. Singhal, T. Goyal, J. Xu, and G. Durrett, “A long way to go: Investigating length correlations in rlhf,” arXiv preprint arXiv:2310.03716, 2023.
+11. R. Park, R. Rafailov, S. Ermon, and C. Finn, “Disentangling length from quality in direct preference optimization,” in Findings of the association for computational linguistics: ACL 2024, 2024, pp. 4998–5017.
+12. N. Muennighoff et al., “Olmoe: Open mixture-of-experts language models,” in International conference on learning representations (ICLR), 2025.
+13. Allen Institute for Artificial Intelligence, “OLMoE, meet iOS.” https://allenai.org/blog/olmoe-app, 2025.
+14. C. Zhou et al., “Lima: Less is more for alignment,” Advances in Neural Information Processing Systems, vol. 36, pp. 55006–55021, 2023.
+15. D. Guo et al., “Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning,” arXiv preprint arXiv:2501.12948, 2025.
+16. DeepSeek-AI et al., “DeepSeek-V3 technical report.” 2025. Available: https://arxiv.org/abs/2412.19437
+17. D. Khatri et al., “The art of scaling reinforcement learning compute for llms,” arXiv preprint arXiv:2510.13786, 2025.
+18. T. Olmo et al., “Olmo 3.” 2025. Available: https://arxiv.org/abs/2512.13961
+19. R. Taori et al., “Stanford alpaca: An instruction-following LLaMA model,” GitHub repository. https://github.com/tatsu-lab/stanford_alpaca;GitHub, 2023.
+20. W.-L. Chiang et al., “Vicuna: An open-source chatbot impressing GPT-4 with 90%* ChatGPT quality.” 2023. Available: https://lmsys.org/blog/2023-03-30-vicuna/
+21. X. Geng et al., “Koala: A dialogue model for academic research.” Blog post, 2023. Accessed: Apr. 03, 2023. [Online]. Available: https://bair.berkeley.edu/blog/2023/04/03/koala/ rlhfbook.com 205[22] M. Conover et al., “Hello dolly: Democratizing the magic of ChatGPT with open models.” Accessed: June 30, 2023. [Online]. Available: https://www.databricks.com/blog/2023/03/24/hello-dolly-democratizing-magic-chatgpt-open-models.html
+23. A. Askell et al., “A general language assistant as a laboratory for alignment,” arXiv preprint arXiv:2112.00861, 2021.
+24. Y. Bai et al., “Constitutional ai: Harmlessness from ai feedback,” arXiv preprint arXiv:2212.08073, 2022.
+25. R. Rafailov, A. Sharma, E. Mitchell, C. D. Manning, S. Ermon, and C. Finn, “Direct preference optimization: Your language model is secretly a reward model,” Advances in Neural Information Processing Systems, vol. 36, 2023.
+26. L. Tunstall et al., “Zephyr: Direct distillation of LM alignment,” in First conference on language modeling, 2024. Available: https://openreview.net/forum?id=aKkAwZB6JV
+27. H. Ivison et al., “Camels in a changing climate: Enhancing lm adaptation with tulu 2,” arXiv preprint arXiv:2311.10702, 2023.
+28. G. Cui et al., “Ultrafeedback: Boosting language models with high-quality feedback,” 2023.
+29. A. Grattafiori et al., “The llama 3 herd of models,” arXiv preprint arXiv:2407.21783, 2024.
+30. B. Adler et al., “Nemotron-4 340B technical report,” arXiv preprint arXiv:2406.11704, 2024.
+31. C. Wirth, R. Akrour, G. Neumann, and J. Fürnkranz, “A survey of preference-based reinforcement learning methods,” Journal of Machine Learning Research, vol. 18, no. 136, pp. 1–46, 2017.
+32. T. Kaufmann, P. Weng, V. Bengs, and E. Hüllermeier, “A survey of reinforcement learning from human feedback,” Transactions on Machine Learning Research (TMLR), 2025.
+33. S. Casper et al., “Open problems and fundamental limitations of reinforcement learning from human feedback,” Transactions on Machine Learning Research (TMLR), 2023.
+34. W. B. Knox and P. Stone, “Tamer: Training an agent manually via evaluative reinforcement,” in 2008 7th IEEE international conference on development and learning, IEEE, 2008, pp. 292–297.
+35. J. MacGlashan et al., “Interactive learning from policy-dependent human feedback,” in International conference on machine learning, PMLR, 2017, pp. 2285–2294.
+36. B. Ibarz, J. Leike, T. Pohlen, G. Irving, S. Legg, and D. Amodei, “Reward learning from human preferences and demonstrations in atari,” Advances in neural information processing systems, vol. 31, 2018.
+37. G. Warnell, N. Waytowich, V. Lawhern, and P. Stone, “Deep tamer: Interactive agent shaping in high-dimensional state spaces,” in Proceedings of the AAAI conference on artificial intelligence, 2018.
+38. J. Leike, D. Krueger, T. Everitt, M. Martic, V. Maini, and S. Legg, “Scalable agent alignment via reward modeling: A research direction,” arXiv preprint arXiv:1811.07871, 2018.
+39. D. M. Ziegler et al., “Fine-tuning language models from human preferences,” arXiv preprint arXiv:1909.08593, 2019.
+40. J. Wu et al., “Recursively summarizing books with human feedback,” arXiv preprint arXiv:2109.10862, 2021. rlhfbook.com 206[41] J. Menick et al., “Teaching language models to support answers with verified quotes,” arXiv preprint arXiv:2203.11147, 2022.
+42. A. Glaese et al., “Improving alignment of dialogue agents via targeted human judgements,” arXiv preprint arXiv:2209.14375, 2022.
+43. L. Gao, J. Schulman, and J. Hilton, “Scaling laws for reward model overoptimization,” in International conference on machine learning, PMLR, 2023, pp. 10835–10866.
+44. D. Ganguli et al., “Red teaming language models to reduce harms: Methods, scaling behaviors, and lessons learned,” arXiv preprint arXiv:2209.07858, 2022.
+45. R. Ramamurthy et al., “Is reinforcement learning (not) for natural language processing: Benchmarks, baselines, and building blocks for natural language policy optimization,” in International conference on learning representations (ICLR), 2023.
+46. A. Havrilla et al., “TrlX: A framework for large scale reinforcement learning from human feedback,” in Proceedings of the 2023 conference on empirical methods in natural language processing, Singapore: Association for Computational Linguistics, Dec. 2023, pp. 8578–8595. doi: 10.18653/v1/2023.emnlp-main.530.
+47. L. von Werra et al., “TRL: Transformer reinforcement learning,” GitHub repository. https://github.com/huggingface/trl;GitHub, 2020.
+48. OpenAI, “ChatGPT: Optimizing language models for dialogue.” https://openai.com/blog/chatgpt/, 2022.
+49. H. Touvron et al., “Llama 2: Open foundation and fine-tuned chat models,” arXiv preprint arXiv:2307.09288, 2023.
+50. H. Lightman et al., “Let’s verify step by step,” in International conference on learning representations (ICLR), 2024.
+51. A. Kumar et al., “Training language models to self-correct via reinforcement learning,” in International conference on learning representations (ICLR), 2025.
+52. A. Singh et al., “Beyond human data: Scaling self-training for problem-solving with language models,” Transactions on Machine Learning Research (TMLR), 2024.
+53. OpenAI, “Introducing OpenAI o1-preview.” Sept. 2024. Available: https://openai.com/index/introducing-openai-o1-preview/
+54. R. S. Sutton, “Reinforcement learning: An introduction,” A Bradford Book, 2018.
+55. N. Lambert, L. Castricato, L. von Werra, and A. Havrilla, “Illustrating reinforcement learning from human feedback (RLHF),” Hugging Face Blog, 2022.
+56. M. Li et al., “Branch-train-merge: Embarrassingly parallel training of expert language models,” arXiv preprint arXiv:2208.03306, 2022.
+57. T. Cohere et al., “Command a: An enterprise-ready large language model,” arXiv preprint arXiv:2504.00698, 2025.
+58. T. OLMo et al., “2 OLMo 2 furious,” arXiv preprint arXiv:2501.00656, 2024.
+59. S. Alrashed, “SmolTulu: Higher learning rate to batch size ratios can lead to better reasoning in SLMs,” arXiv preprint arXiv:2412.08347, 2024.
+60. A. Yang et al., “Qwen3 technical report.” 2025. doi: 10.48550/arXiv.2505.09388.
+61. B. Xia et al., “MiMo: Unlocking the reasoning potential of language model–from pretraining to posttraining,” arXiv preprint arXiv:2505.07608, 2025.
+62. B. Seed et al., “Seed1.5-thinking: Advancing superb reasoning models with reinforcement learning.” 2025. Available: https://arxiv.org/abs/2504.13914
+63. T. Brown et al., “Language models are few-shot learners,” Advances in neural information processing systems, vol. 33, pp. 1877–1901, 2020. rlhfbook.com 207[64] C. Raffel et al., “Exploring the limits of transfer learning with a unified text-to-text transformer,” Journal of machine learning research, vol. 21, no. 140, pp. 1–67, 2020.
+65. J. Wei et al., “Finetuned language models are zero-shot learners,” in International conference on learning representations, 2022. Available: https://openreview.net/forum?id=gEZrGCozdqR
+66. V. Sanh et al., “Multitask prompted training enables zero-shot task generalization,” in International conference on learning representations, 2022. Available: https: //openreview.net/forum?id=9Vrb9D0WI4
+67. S. Mishra, D. Khashabi, C. Baral, and H. Hajishirzi, “Cross-task generalization via natural language crowdsourcing instructions,” in Proceedings of the 60th annual meeting of the association for computational linguistics (volume 1: Long papers), Association for Computational Linguistics, May 2022, pp. 3470–3487. doi: 10.18653/v1/2022.acllong.244.
+68. E. Wallace, K. Xiao, R. Leike, L. Weng, J. Heidecke, and A. Beutel, “The instruction hierarchy: Training llms to prioritize privileged instructions,” arXiv preprint arXiv:2404.13208, 2024.
+69. T. Dettmers, A. Pagnoni, A. Holtzman, and L. Zettlemoyer, “Qlora: Efficient finetuning of quantized llms,” Advances in neural information processing systems, vol. 36, pp. 10088–10115, 2023.
+70. N. Rajani, L. Tunstall, E. Beeching, N. Lambert, A. M. Rush, and T. Wolf, “No robots,” Hugging Face repository. https://huggingface.co/datasets/HuggingFaceH4/no_robots; Hugging Face, 2023.
+71. A. Y. Ng, S. Russell, et al., “Algorithms for inverse reinforcement learning.” in Proceedings of the seventeenth international conference on machine learning, in ICML ’00. 2000, pp. 663--670.
+72. R. A. Bradley and M. E. Terry, “Rank analysis of incomplete block designs: I. The method of paired comparisons,” Biometrika, vol. 39, no. 3/4, pp. 324–345, 1952, Accessed: Feb. 13, 2023. [Online]. Available: http://www.jstor.org/stable/2334029
+73. B. Zhu et al., “Starling-7b: Improving helpfulness and harmlessness with rlaif,” in First conference on language modeling, 2024.
+74. A. Liu, Z. Zhao, C. Liao, P. Lu, and L. Xia, “Learning plackett-luce mixtures from partial preferences,” in Proceedings of the AAAI conference on artificial intelligence, 2019, pp. 4328–4335.
+75. B. Zhu, M. Jordan, and J. Jiao, “Principled reinforcement learning with human feedback from pairwise or k-wise comparisons,” in International conference on machine learning, PMLR, 2023, pp. 43037–43067.
+76. K. Cobbe et al., “Training verifiers to solve math word problems,” arXiv preprint arXiv:2110.14168, 2021.
+77. C. Lyu et al., “Exploring the limit of outcome reward for learning mathematical reasoning,” arXiv preprint arXiv:2502.06781, 2025.
+78. L. Zheng et al., “Judging llm-as-a-judge with mt-bench and chatbot arena,” Advances in Neural Information Processing Systems, vol. 36, pp. 46595–46623, 2023.
+79. Y. Dubois, B. Galambosi, P. Liang, and T. B. Hashimoto, “Length-controlled alpacaeval: A simple way to debias automatic evaluators,” arXiv preprint arXiv:2404.04475, 2024. rlhfbook.com 208[80] T. Li et al., “From crowdsourced data to high-quality benchmarks: Arena-hard and BenchBuilder pipeline,” in International conference on machine learning (ICML), 2025.
+81. B. Y. Lin et al., “WILDBENCH: Benchmarking LLMs with challenging tasks from real users in the wild,” in International conference on learning representations (ICLR), 2025.
+82. D. Mahan et al., “Generative reward models,” 2024, Available: https://www.synthlabs.ai/pdf/Generative_Reward_Models.pdf
+83. L. Zhang, A. Hosseini, H. Bansal, M. Kazemi, A. Kumar, and R. Agarwal, “Generative verifiers: Reward modeling as next-token prediction,” in International conference on learning representations (ICLR), 2025.
+84. Z. Ankner, M. Paul, B. Cui, J. D. Chang, and P. Ammanabrolu, “Critique-out-loud reward models,” arXiv preprint arXiv:2408.11791, 2024.
+85. S. Kim et al., “Prometheus: Inducing fine-grained evaluation capability in language models,” in The twelfth international conference on learning representations, 2024.
+86. N. Lambert et al., “Rewardbench: Evaluating reward models for language modeling,” in Conference of the north american chapter of the association for computational linguistics (NAACL), 2025.
+87. X. Wen et al., “Rethinking reward model evaluation: Are we barking up the wrong tree?” in International conference on learning representations (ICLR), 2025.
+88. E. Zhou et al., “RMB: Comprehensively benchmarking reward models in LLM alignment,” in International conference on learning representations (ICLR), 2025.
+89. S. Malik et al., “RewardBench 2: Advancing reward model evaluation,” arXiv preprint arXiv:2506.01937, 2025.
+90. E. Frick et al., “How to evaluate reward models for RLHF,” in International conference on learning representations (ICLR), 2025.
+91. Y. Liu, Z. Yao, R. Min, Y. Cao, L. Hou, and J. Li, “RM-bench: Benchmarking reward models of language models with subtlety and style,” in International conference on learning representations (ICLR), 2025.
+92. S. Gureja et al., “M-RewardBench: Evaluating reward models in multilingual settings,” in Annual meeting of the association for computational linguistics (ACL), 2025.
+93. Z. Jin et al., “RAG-RewardBench: Benchmarking reward models in retrieval augmented generation for preference alignment,” in Annual meeting of the association for computational linguistics (ACL), 2025.
+94. Z. Wu, M. Yasunaga, A. Cohen, Y. Kim, A. Celikyilmaz, and M. Ghazvininejad, “reWordBench: Benchmarking and improving the robustness of reward models with transformed inputs,” arXiv preprint arXiv:2503.11751, 2025.
+95. S. Kim et al., “Evaluating robustness of reward models for mathematical reasoning,” arXiv preprint arXiv:2410.01729, 2024.
+96. Z. Liu, Y. Chen, M. Shoeybi, B. Catanzaro, and W. Ping, “AceMath: Advancing frontier math reasoning with post-training and reward modeling,” in Annual meeting of the association for computational linguistics (ACL), 2025. Available: https://arxiv.org/abs/2412.15084
+97. M. Song, Z. Su, X. Qu, J. Zhou, and Y. Cheng, “PRMBench: A fine-grained and challenging benchmark for process-level reward models,” in Annual meeting of the association for computational linguistics (ACL), 2025. rlhfbook.com 209[98] C. Zheng et al., “ProcessBench: Identifying process errors in mathematical reasoning,” in Annual meeting of the association for computational linguistics (ACL), 2025. Available: https://arxiv.org/abs/2412.06559
+99. W. Wang et al., “VisualPRM: An effective process reward model for multimodal reasoning,” arXiv preprint arXiv:2503.10291, 2025.
+100. H. Tu, W. Feng, H. Chen, H. Liu, X. Tang, and C. Xie, “ViLBench: A suite for vision-language process reward modeling.” Mar. 2025. Available: https://arxiv.org/abs/2503.20271
+101. T. Men, Z. Jin, P. Cao, Y. Chen, K. Liu, and J. Zhao, “Agent-RewardBench: Towards a unified benchmark for reward modeling across perception, planning, and safety in realworld multimodal agents,” in Proceedings of the 63rd annual meeting of the association for computational linguistics (volume 1: Long papers), Vienna, Austria: Association for Computational Linguistics, July 2025, pp. 17521–17541. doi: 10.18653/v1/2025.acllong.857.
+102. H. Lin et al., “CUARewardBench: A benchmark for evaluating reward models on computer-using agent.” 2025. Available: https://arxiv.org/abs/2510.18596
+103. Z. Chen et al., “MJ-bench: Is your multimodal reward model really a good judge for text-to-image generation?” arXiv preprint arXiv:2407.04842, 2024.
+104. M. Yasunaga, L. Zettlemoyer, and M. Ghazvininejad, “Multimodal rewardbench: Holistic evaluation of reward models for vision language models,” arXiv preprint arXiv:2502.14191, 2025.
+105. L. Li et al., “VLRewardBench: A challenging benchmark for vision-language generative reward models,” arXiv preprint arXiv:2411.17451, 2024.
+106. J. Ruan et al., “Vlrmbench: A comprehensive and challenging benchmark for visionlanguage reward models,” arXiv preprint arXiv:2503.07478, 2025.
+107. H. Wang, W. Xiong, T. Xie, H. Zhao, and T. Zhang, “Interpretable preferences via multi-objective reward modeling and mixture-of-experts,” in Conference on empirical methods in natural language processing (EMNLP), 2024.
+108. Z. Wang et al., “HelpSteer2: Open-source dataset for training top-performing reward models,” arXiv preprint arXiv:2406.08673, 2024.
+109. Z. Wang et al., “HelpSteer2-preference: Complementing ratings with preferences,” in International conference on learning representations (ICLR), 2025.
+110. J. Park, S. Jwa, M. Ren, D. Kim, and S. Choi, “Offsetbias: Leveraging debiased data for tuning evaluators,” in Conference on empirical methods in natural language processing (EMNLP), 2024.
+111. A. Ahmadian et al., “Back to basics: Revisiting reinforce style optimization for learning from human feedback in llms,” in Annual meeting of the association for computational linguistics (ACL), 2024.
+112. J. Schulman, P. Moritz, S. Levine, M. Jordan, and P. Abbeel, “High-dimensional continuous control using generalized advantage estimation,” in Proceedings of the international conference on learning representations (ICLR), 2016.
+113. R. J. Williams, “Simple statistical gradient-following algorithms for connectionist reinforcement learning,” Machine learning, vol. 8, pp. 229–256, 1992.
+114. S. C. Huang, A. Ahmadian, and C. F. AI, “Putting RL back in RLHF.” https: //huggingface.co/blog/putting_rl_back_in_rlhf_with_rloo, 2024.
+115. W. Kool, H. van Hoof, and M. Welling, “Buy 4 reinforce samples, get a baseline for free!” 2019. rlhfbook.com 210[116] J. Schulman, F. Wolski, P. Dhariwal, A. Radford, and O. Klimov, “Proximal policy optimization algorithms,” arXiv preprint arXiv:1707.06347, 2017.
+117. C. Berner et al., “Dota 2 with large scale deep reinforcement learning,” arXiv preprint arXiv:1912.06680, 2019.
+118. Z. Liu et al., “Understanding R1-zero-like training: A critical perspective,” arXiv preprint arXiv:2503.20783, Mar. 2025, Available: https://arxiv.org/abs/2503.20783
+119. J. Nocedal and S. J. Wright, Numerical optimization. Springer, 2006.
+120. J. Schulman, S. Levine, P. Abbeel, M. Jordan, and P. Moritz, “Trust region policy optimization,” in International conference on machine learning, PMLR, 2015, pp. 1889–1897.
+121. Z. Shao et al., “Deepseekmath: Pushing the limits of mathematical reasoning in open language models,” arXiv preprint arXiv:2402.03300, 2024.
+122. C. Zheng et al., “Group sequence policy optimization.” 2025. doi: 10.48550/arXiv.2507.18071.
+123. MiniMax, “MiniMax-M1: Scaling test-time compute efficiently with lightning attention.” 2025. doi: 10.48550/arXiv.2506.13585.
+124. N. Le Roux et al., “Tapered off-policy REINFORCE: Stable and efficient reinforcement learning for LLMs.” 2025. doi: 10.48550/arXiv.2503.14286.
+125. H. Ivison et al., “Unpacking DPO and PPO: Disentangling best practices for learning from preference feedback,” in Advances in neural information processing systems (NeurIPS), 2024.
+126. J. Schulman, “Approximating KL-divergence.” http://joschu.net/blog/kl-approx.html,2016.
+127. S. Huang, M. Noukhovitch, A. Hosseini, K. Rasul, W. Wang, and L. Tunstall, “The n+ implementation details of RLHF with PPO: A case study on TL;DR summarization,” in First conference on language modeling, 2024. Available: https://openreview.net/forum?id=kHO2ZTa8e3
+128. L. Weng, “Policy gradient algorithms,” lilianweng.github.io, 2018, Available: https: //lilianweng.github.io/posts/2018-04-08-policy-gradient/
+129. Q. Yu et al., “DAPO: An open-source LLM reinforcement learning system at scale.” 2025.
+130. A. Baheti, X. Lu, F. Brahman, R. L. Bras, M. Sap, and M. Riedl, “Leftover lunch: Advantage-based offline reinforcement learning for language models,” in International conference on learning representations (ICLR), 2024.
+131. M. Noukhovitch, S. Huang, S. Xhonneux, A. Hosseini, R. Agarwal, and A. Courville, “Asynchronous RLHF: Faster and more efficient off-policy RL for language models,” in International conference on learning representations (ICLR), 2025.
+132. B. Wu et al., “LlamaRL: A distributed asynchronous reinforcement learning framework for efficient large-scale LLM trainin,” arXiv preprint arXiv:2505.24034, 2025.
+133. W. Fu et al., “AReaL: A large-scale asynchronous reinforcement learning system for language reasoning,” arXiv preprint arXiv:2505.24298, 2025.
+134. P. I. Team et al., “INTELLECT-2: A reasoning model trained through globally decentralized reinforcement learning.” 2025. Available: https://arxiv.org/abs/2505.07291
+135. E. L. Ionides, “Truncated importance sampling,” Journal of Computational and Graphical Statistics, vol. 17, no. 2, pp. 295–311, 2008. rlhfbook.com 211[136] F. Yao, L. Liu, D. Zhang, C. Dong, J. Shang, and J. Gao, “Your efficient RL framework secretly brings you off-policy RL training.” 2025. Available: https://fengyao.notion.site/off-policy-rl
+137. D. Seita, “Notes on the generalized advantage estimation paper.” 2017. Available: https://danieltakeshi.github.io/2017/04/02/notes-on-the-generalized-advantageestimation-paper/
+138. T. Wu, B. Zhu, R. Zhang, Z. Wen, K. Ramchandran, and J. Jiao, “Pairwise proximal policy optimization: Harnessing relative feedback for llm alignment,” arXiv preprint arXiv:2310.00212, 2023.
+139. C. Gao et al., “Soft adaptive policy optimization,” arXiv preprint arXiv:2511.20347, Nov. 2025, Available: https://arxiv.org/abs/2511.20347
+140. Y. Flet-Berliac et al., “Contrastive policy gradient: Aligning LLMs on sequence-level scores in a supervised-friendly fashion,” in Conference on empirical methods in natural language processing (EMNLP), 2024.
+141. Z. Li et al., “Remax: A simple, effective, and efficient reinforcement learning method for aligning large language models,” in Forty-first international conference on machine learning, 2024.
+142. T. Gunter et al., “Apple intelligence foundation language models,” arXiv preprint arXiv:2407.21075, 2024.
+143. K. Team et al., “Kimi k1. 5: Scaling reinforcement learning with llms,” arXiv preprint arXiv:2501.12599, 2025.
+144. M. Tomar, L. Shani, Y. Efroni, and M. Ghavamzadeh, “Mirror descent policy optimization,” in International conference on learning representations (ICLR), 2022.
+145. Y. Zhang et al., “Improving LLM general preference alignment via optimistic online mirror descent,” arXiv preprint arXiv:2502.16852, 2025.
+146. Y. Yuan et al., “VAPO: Efficient and reliable reinforcement learning for advanced reasoning tasks,” arXiv preprint arXiv:2504.05118, 2025.
+147. Y. Yuan, Y. Yue, R. Zhu, T. Fan, and L. Yan, “What’s behind PPO’s collapse in long-CoT? Value optimization holds the secret,” arXiv preprint arXiv:2503.01491, 2025.
+148. A. Irpan, “Deep reinforcement learning doesn’t work yet.” 2018. Available: https: //www.alexirpan.com/2018/02/14/rl-hard.html
+149. P. Henderson, R. Islam, P. Bachman, J. Pineau, D. Precup, and D. Meger, “Deep reinforcement learning that matters,” in Proceedings of the AAAI conference on artificial intelligence, 2018. Available: https://ojs.aaai.org/index.php/AAAI/article/view/11694
+150. A. Mirhoseini et al., “Chip placement with deep reinforcement learning,” in Design, automation and test in europe (DATE), 2023.
+151. J. Schrittwieser et al., “Mastering atari, go, chess and shogi by planning with a learned model,” Nature, vol. 588, no. 7839, pp. 604–609, 2020.
+152. M. Cusumano-Towner et al., “Robust autonomy emerges from self-play,” in International conference on machine learning (ICML), 2025.
+153. G. Sheng et al., “HybridFlow: A flexible and efficient RLHF framework,” in European conference on computer systems (EuroSys), 2025.
+154. J. Hu et al., “OpenRLHF: An easy-to-use, scalable and high-performance RLHF framework,” arXiv preprint arXiv:2405.11143, 2024. rlhfbook.com 212[155] J. Liu, A. Cohen, R. Pasunuru, Y. Choi, H. Hajishirzi, and A. Celikyilmaz, “Don’t throw away your value model! Generating more preferable text with value-guided monte-carlo tree search decoding,” arXiv preprint arXiv:2309.15028, 2023.
+156. B. Brown et al., “Large language monkeys: Scaling inference compute with repeated sampling,” arXiv preprint arXiv:2407.21787, 2024.
+157. Z. Liu et al., “Inference-time scaling for generalist reward modeling,” arXiv preprint arXiv:2504.02495, 2025.
+158. N. Muennighoff et al., “s1: Simple test-time scaling,” arXiv preprint arXiv:2501.19393, 2025.
+159. L. Chen et al., “Are more llm calls all you need? Towards scaling laws of compound inference systems,” arXiv preprint arXiv:2403.02419, 2024.
+160. E. Zelikman, Y. Wu, J. Mu, and N. Goodman, “STaR: Bootstrapping reasoning with reasoning,” in Advances in neural information processing systems, A. H. Oh, A. Agarwal, D. Belgrave, and K. Cho, Eds., 2022. Available: https://openreview.net/forum?id=_3ELRdg2sgI
+161. E. Zelikman, G. Harik, Y. Shao, V. Jayasiri, N. Haber, and N. D. Goodman, “Quiet- STaR: Language models can teach themselves to think before speaking,” COLM, vol. abs/2403.09629, 2024.
+162. M. D. Hoffman et al., “Training chain-of-thought via latent-variable inference,” in Thirty-seventh conference on neural information processing systems, 2023. Available: https://openreview.net/forum?id=a147pIS2Co
+163. A. Kazemnejad et al., “VinePPO: Unlocking RL potential for LLM reasoning through refined credit assignment.” 2024. Available: https://arxiv.org/abs/2410.01679
+164. J. Gehring, K. Zheng, J. Copet, V. Mella, T. Cohen, and G. Synnaeve, “RLEF: Grounding code LLMs in execution feedback with reinforcement learning,” in International conference on machine learning (ICML), 2025. Available: https: //arxiv.org/abs/2410.02089
+165. S. Xu et al., “Is dpo superior to ppo for llm alignment? A comprehensive study,” in International conference on machine learning (ICML), 2024.
+166. N. Amit, S. Goldwasser, O. Paradise, and G. Rothblum, “Models that prove their own correctness,” Electron. Colloquium Comput. Complex., 2024.
+167. J. Hu, Y. Zhang, Q. Han, D. Jiang, X. Zhang, and H. Shum, “Open-reasoner-zero: An open source approach to scaling up reinforcement learning on the base model,” arXiv preprint arXiv:2503.24290, 2025.
+168. M. Abdin, S. Agarwal, A. Awadallah, et al., “Phi-4-reasoning technical report,” arXiv preprint arXiv:2504.21318, 2025.
+169. A. Bercovich, I. Levy, I. Golan, et al., “Llama-nemotron: Efficient reasoning models,” arXiv preprint arXiv:2505.00949, 2025.
+170. A. Liu, B. Zhou, C. Xu, et al., “Hunyuan-TurboS: Advancing large language models through mamba-transformer synergy and adaptive chain-of-thought,” arXiv preprint arXiv:2505.15431, 2025.
+171. J. He, J. Liu, C. Y. Liu, et al., “Skywork open reasoner 1 technical report,” arXiv preprint arXiv:2505.22312, 2025.
+172. C. Team et al., “MiMo-VL technical report.” 2025. Available: https://arxiv.org/abs/2506.03569 rlhfbook.com 213[173] E. Guha, R. Marten, S. Keh, et al., “OpenThoughts: Data recipes for reasoning models,” arXiv preprint arXiv:2506.04178, 2025.
+174. Mistral AI, “Magistral: Scaling reinforcement learning for reasoning in large language models,” Mistral AI, 2025. Available: https://mistral.ai/static/research/magistral.pdf
+175. K. Team et al., “Kimi K2: Open agentic intelligence.” 2025. Available: https: //arxiv.org/abs/2507.20534
+176. A. Zeng et al., “GLM-4.5: Agentic, reasoning, and coding (ARC) foundation models.” 2025. doi: 10.48550/arXiv.2508.06471.
+177. NVIDIA, “NVIDIA nemotron nano 2: An accurate and efficient hybrid mambatransformer reasoning model.” 2025. Available: https://arxiv.org/abs/2508.14444
+178. Z. Cheng et al., “K2-think: A parameter-efficient reasoning system.” 2025. Available: https://arxiv.org/abs/2509.07604
+179. M. L. Team, “Introducing LongCat-flash-thinking: A technical report.” 2025. Available: https://arxiv.org/abs/2509.18883
+180. L. Team et al., “Every step evolves: Scaling reinforcement learning for trillion-scale thinking model.” 2025. Available: https://arxiv.org/abs/2510.18855
+181. DeepSeek-AI, “DeepSeek-V3.2: Pushing the frontier of open large language models.” 2025. Available: https://arxiv.org/abs/2512.02556
+182. Z. Liu et al., “K2-V2: A 360-open, reasoning-enhanced LLM,” arXiv preprint arXiv:2512.06201, 2025.
+183. NVIDIA, “Nemotron 3 nano: Open, efficient mixture-of-experts hybrid mambatransformer model for agentic reasoning,” NVIDIA, Technical Report, 2025. Available: https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Nano-Technical-Report.pdf
+184. Xiaomi LLM-Core Team et al., “MiMo-V2-flash technical report.” Jan. 2026. doi: 10.48550/arXiv.2601.02780.
+185. Z. Wang et al., “RAGEN: Understanding self-evolution in LLM agents via multi-turn reinforcement learning.” 2025. Available: https://arxiv.org/abs/2504.20073
+186. R. Shao et al., “Spurious rewards: Rethinking training signals in RLVR.” https: //rethink-rlvr.notion.site/Spurious-Rewards-Rethinking-Training-Signals-in- RLVR-1f4df34dac1880948858f95aeb88872f, 2025.
+187. Anthropic, “Claude 4.” May 2025. Available: https://www.anthropic.com/news/claude-4
+188. P. Aggarwal and S. Welleck, “L1: Controlling how long a reasoning model thinks with reinforcement learning,” arXiv preprint arXiv:2503.04697, 2025.
+189. Y. Zhao, R. Joshi, T. Liu, M. Khalman, M. Saleh, and P. J. Liu, “Slic-hf: Sequence likelihood calibration with human feedback,” arXiv preprint arXiv:2305.10425, 2023.
+190. Z. Gao et al., “Rebel: Reinforcement learning via regressing relative rewards,” in Advances in neural information processing systems (NeurIPS), 2024.
+191. M. G. Azar et al., “A general theoretical paradigm to understand learning from human preferences,” in International conference on artificial intelligence and statistics, PMLR, 2024, pp. 4447–4455.
+192. A. Amini, T. Vieira, and R. Cotterell, “Direct preference optimization with an offset,” in Annual meeting of the association for computational linguistics (ACL), 2024.
+193. J. Hong, N. Lee, and J. Thorne, “Reference-free monolithic preference optimization with odds ratio,” arXiv e-prints, pp. arXiv–2403, 2024. rlhfbook.com 214[194] Y. Meng, M. Xia, and D. Chen, “Simpo: Simple preference optimization with a reference-free reward,” Advances in Neural Information Processing Systems, vol. 37, pp. 124198–124235, 2025.
+195. N. Razin, S. Malladi, A. Bhaskar, D. Chen, S. Arora, and B. Hanin, “Unintentional unalignment: Likelihood displacement in direct preference optimization,” in International conference on learning representations (ICLR), 2025.
+196. Y. Ren and D. J. Sutherland, “Learning dynamics of llm finetuning,” in International conference on learning representations (ICLR), 2025.
+197. T. Xiao, Y. Yuan, H. Zhu, M. Li, and V. G. Honavar, “Cal-dpo: Calibrated direct preference optimization for language model alignment,” in Advances in neural information processing systems (NeurIPS), 2024.
+198. A. Gupta et al., “AlphaPO–reward shape matters for LLM alignment,” in International conference on machine learning (ICML), 2025.
+199. S. Guo et al., “Direct language model alignment from online ai feedback,” arXiv preprint arXiv:2402.04792, 2024.
+200. P. Singhal, N. Lambert, S. Niekum, T. Goyal, and G. Durrett, “D2po: Discriminatorguided dpo with response evaluation models,” arXiv preprint arXiv:2405.01511, 2024.
+201. C. Rosset, C.-A. Cheng, A. Mitra, M. Santacroce, A. Awadallah, and T. Xie, “Direct nash optimization: Teaching language models to self-improve with general preferences,” arXiv preprint arXiv:2404.03715, 2024.
+202. S. Jung, G. Han, D. W. Nam, and K.-W. On, “Binary classifier optimization for large language model alignment,” in Annual meeting of the association for computational linguistics (ACL), 2025.
+203. H. Zhao et al., “Rainbowpo: A unified framework for combining improvements in preference optimization,” in International conference on learning representations (ICLR), 2025.
+204. A. Gorbatovski, B. Shaposhnikov, V. Sinii, A. Malakhov, and D. Gavrilov, “The differences between direct alignment algorithms are a blur,” arXiv preprint arXiv:2502.01237, 2025.
+205. E. Bakouch et al., “SmolLM3: smol, multilingual, long-context reasoner.” https: //huggingface.co/blog/smollm3, 2025.
+206. S. Geng et al., “The delta learning hypothesis: Preference tuning on weak data can yield strong gains,” in Second conference on language modeling, 2025. Available: https://openreview.net/forum?id=9rwtezthwo
+207. A. Panickssery, S. Bowman, and S. Feng, “Llm evaluators recognize and favor their own generations,” Advances in Neural Information Processing Systems, 2024.
+208. F. Tajwar et al., “Preference fine-tuning of llms should leverage suboptimal, on-policy data,” in International conference on machine learning (ICML), 2024.
+209. W. R. Gilks and P. Wild, “Adaptive rejection sampling for gibbs sampling,” Journal of the Royal Statistical Society: Series C (Applied Statistics), vol. 41, no. 2, pp. 337–348, 1992.
+210. H. Dong et al., “RAFT: Reward rAnked FineTuning for generative foundation model alignment,” Transactions on Machine Learning Research (TMLR), 2023.
+211. T. Liu et al., “Statistical rejection sampling improves preference optimization,” in International conference on learning representations (ICLR), 2024. rlhfbook.com 215[212] N. Lambert, T. K. Gilbert, and T. Zick, “Entangled preferences: The history and risks of reinforcement learning and human feedback,” arXiv preprint arXiv:2310.13595, 2023.
+213. V. Conitzer et al., “Social choice should guide AI alignment in dealing with diverse human feedback,” in International conference on machine learning (ICML), 2024.
+214. A. Mishra, “Ai alignment and social choice: Fundamental limitations and policy implications,” arXiv preprint arXiv:2310.16048, 2023.
+215. H. R. Kirk et al., “The PRISM alignment project: What participatory, representative and individualised human feedback reveals about the subjective and multicultural alignment of large language models,” arXiv preprint arXiv:2404.16019, 2024.
+216. S. Poddar, Y. Wan, H. Ivison, A. Gupta, and N. Jaques, “Personalizing reinforcement learning from human feedback with variational preference learning,” in Advances in neural information processing systems (NeurIPS), 2024.
+217. A. Arnauld, The port-royal logic. 1662.
+218. J. Bentham, An introduction to the principles of morals and legislation. 1823.
+219. F. P. Ramsey, “Truth and probability,” Readings in Formal Epistemology: Sourcebook, pp. 21–45, 2016.
+220. A. O. Hirschman, “Against parsimony: Three easy ways of complicating some categories of economic discourse,” Bulletin of the American Academy of arts and Sciences, vol. 37, no. 8, pp. 11–28, 1984.
+221. G. K. Hadfield and B. R. Weingast, “Microfoundations of the rule of law,” Annual Review of Political Science, vol. 17, pp. 21–42, 2014.
+222. E. L. Thorndike, “The law of effect,” The American journal of psychology, vol. 39, no. 1/4, pp. 212–222, 1927.
+223. B. F. Skinner, The behavior of organisms: An experimental analysis. BF Skinner Foundation, 2019.
+224. R. A. Briggs, “Normative theories of rational choice: Expected utility,” 2014.
+225. B. Widrow and M. E. Hoff, “Adaptive switching circuits,” Stanford Univ Ca Stanford Electronics Labs, 1960.
+226. S. Singh, R. L. Lewis, and A. G. Barto, “Where do rewards come from,” in Proceedings of the annual conference of the cognitive science society, Cognitive Science Society, 2009, pp. 2601–2606.
+227. S. M. McClure, N. D. Daw, and P. R. Montague, “A computational substrate for incentive salience,” Trends in neurosciences, vol. 26, no. 8, pp. 423–428, 2003.
+228. D. Silver, S. Singh, D. Precup, and R. S. Sutton, “Reward is enough,” Artificial Intelligence, vol. 299, p. 103535, 2021.
+229. R. Bellman, “A markovian decision process,” Journal of mathematics and mechanics, pp. 679–684, 1957.
+230. R. A. Howard, “Dynamic programming and markov processes.” 1960.
+231. J. M. Mendel and R. W. McLaren, “8 reinforcement-learning control and pattern recognition systems,” in Adaptive, learning and pattern recognition systems, vol. 66, J. M. Mendel and K. S. Fu, Eds., in Mathematics in science and engineering, vol. 66., Elsevier, 1970, pp. 287–318. doi: https://doi.org/10.1016/S0076-5392(08)60497-X.
+232. M. Waltz and K. Fu, “A heuristic approach to reinforcement learning control systems,” IEEE Transactions on Automatic Control, vol. 10, no. 4, pp. 390–398, 1965, doi: 10.1109/TAC.1965.1098193. rlhfbook.com 216[233] A. H. Klopf, Brain function and adaptive systems: A heterostatic theory. Air Force Cambridge Research Laboratories, Air Force Systems Command, 1972.
+234. R. S. Sutton, “Learning to predict by the methods of temporal differences,” Machine learning, vol. 3, pp. 9–44, 1988.
+235. G. Tesauro et al., “Temporal difference learning and TD-gammon,” Communications of the ACM, vol. 38, no. 3, pp. 58–68, 1995.
+236. C. J. Watkins and P. Dayan, “Q-learning,” Machine learning, vol. 8, pp. 279–292, 1992.
+237. V. Mnih et al., “Playing atari with deep reinforcement learning,” arXiv preprint arXiv:1312.5602, 2013.
+238. F. Golnaraghi and B. C. Kuo, Automatic control systems. McGraw-Hill Education, 2017.
+239. D. Silver et al., “Mastering the game of go without human knowledge,” Nature, vol. 550, no. 7676, pp. 354–359, 2017.
+240. J. Degrave et al., “Magnetic control of tokamak plasmas through deep reinforcement learning,” Nature, vol. 602, no. 7897, pp. 414–419, 2022.
+241. E. Kaufmann, L. Bauersfeld, A. Loquercio, M. Müller, V. Koltun, and D. Scaramuzza, “Champion-level drone racing using deep reinforcement learning,” Nature, vol. 620, no. 7976, pp. 982–987, 2023, doi: 10.1038/s41586-023-06419-4.
+242. R. Agarwal, M. Schwarzer, P. S. Castro, A. C. Courville, and M. Bellemare, “Deep reinforcement learning at the edge of the statistical precipice,” Advances in neural information processing systems, vol. 34, pp. 29304–29320, 2021.
+243. N. Salha, “Aesthetics & art in the early development of human-computer interfaces,” PhD thesis, Universität Bremen, 2011.
+244. T. K. Gilbert, S. Dean, T. Zick, and N. Lambert, “Choices, risks, and reward reports: Charting public policy for reinforcement learning systems,” arXiv preprint arXiv:2202.05716, 2022.
+245. J. Von Neumann and O. Morgenstern, “Theory of games and economic behavior, 2nd rev,” 1947.
+246. S. Pitis, “Rethinking the discount factor in reinforcement learning: A decision theoretic approach,” in Proceedings of the AAAI conference on artificial intelligence, 2019, pp. 7949–7956.
+247. S. Pitis, “Consistent aggregation of objectives with diverse time preferences requires non-markovian rewards,” in Advances in neural information processing systems (NeurIPS), 2023.
+248. D. Abel et al., “On the expressivity of markov reward,” Advances in Neural Information Processing Systems, vol. 34, pp. 7799–7812, 2021.
+249. A. Sen, “Behaviour and the concept of preference,” Economica, vol. 40, no. 159, pp. 241–259, 1973.
+250. K. J. Arrow, “A difficulty in the concept of social welfare,” Journal of political economy, vol. 58, no. 4, pp. 328–346, 1950.
+251. E. Maskin and A. Sen, The arrow impossibility theorem. Columbia University Press, 2014.
+252. J. C. Harsanyi, “Rule utilitarianism and decision theory,” Erkenntnis, vol. 11, no. 1, pp. 25–53, 1977. rlhfbook.com 217[253] D. Hadfield-Menell, S. J. Russell, P. Abbeel, and A. Dragan, “Cooperative inverse reinforcement learning,” Advances in neural information processing systems, vol. 29, 2016.
+254. A. Fickinger, S. Zhuang, D. Hadfield-Menell, and S. Russell, “Multi-principal assistance games,” arXiv preprint arXiv:2007.09540, 2020.
+255. N. Soares, B. Fallenstein, S. Armstrong, and E. Yudkowsky, “Corrigibility,” in Workshops at the twenty-ninth AAAI conference on artificial intelligence, 2015.
+256. R. Pettigrew, Choosing for changing selves. Oxford University Press, 2019.
+257. Z. Wang et al., “HelpSteer3-preference: Open human-annotated preference data across diverse tasks and languages,” arXiv preprint arXiv:2505.11475, 2025.
+258. W.-L. Chiang et al., “Chatbot arena: An open platform for evaluating llms by human preference,” in International conference on machine learning (ICML), 2024.
+259. R. Likert, “A technique for the measurement of attitudes.” Archives of psychology, 1932.
+260. J. Zhou et al., “Instruction-following evaluation for large language models.” 2023. Available: https://arxiv.org/abs/2311.07911
+261. K. Ethayarajh, W. Xu, N. Muennighoff, D. Jurafsky, and D. Kiela, “Kto: Model alignment as prospect theoretic optimization,” arXiv preprint arXiv:2402.01306, 2024.
+262. Z. Wu et al., “Fine-grained human feedback gives better rewards for language model training,” Advances in Neural Information Processing Systems, vol. 36, 2023.
+263. A. Chen et al., “Learning from natural language feedback,” Transactions on Machine Learning Research, 2024.
+264. A. Kumar, Y. He, A. H. Markosyan, B. Chern, and I. Arrieta-Ibarra, “Detecting prefix bias in LLM-based reward models,” in ACM conference on fairness, accountability, and transparency (FAccT), 2025.
+265. A. Bharadwaj, C. Malaviya, N. Joshi, and M. Yatskar, “Flattery, fluff, and fog: Diagnosing and mitigating idiosyncratic biases in preference models.” 2025. Available: https://arxiv.org/abs/2506.05339
+266. M. Sharma et al., “Towards understanding sycophancy in language models,” in The twelfth international conference on learning representations, 2024. Available: https://openreview.net/forum?id=tvhaxkMKAn
+267. Y. Bu, L. Huo, Y. Jing, and Q. Yang, “Beyond excess and deficiency: Adaptive length bias mitigation in reward models for RLHF,” in Findings of the association for computational linguistics: NAACL 2025, 2025, pp. 3091–3098.
+268. X. Zhang, W. Xiong, L. Chen, T. Zhou, H. Huang, and T. Zhang, “From lists to emojis: How format bias affects model alignment,” in Annual meeting of the association for computational linguistics (ACL), 2025.
+269. OpenAI, “Introducing the model spec.” May 2024. Available: https://openai.com/index/introducing-the-model-spec/
+270. I. Shumailov, Z. Shumaylov, Y. Zhao, N. Papernot, R. Anderson, and Y. Gal, “AI models collapse when trained on recursively generated data,” Nature, vol. 631, no. 8022, pp. 755–759, 2024.
+271. M. Gerstgrasser et al., “Is model collapse inevitable? Breaking the curse of recursion by accumulating real and synthetic data,” arXiv preprint arXiv:2404.01413, 2024. rlhfbook.com 218[272] Y. Feng, E. Dohmatob, P. Yang, F. Charton, and J. Kempe, “Beyond model collapse: Scaling up with synthesized data requires reinforcement,” in ICML 2024 workshop on theoretical foundations of foundation models, 2024.
+273. Y. Wang et al., “Self-instruct: Aligning language models with self-generated instructions,” in Annual meeting of the association for computational linguistics (ACL), 2023.
+274. E. Beeching et al., “NuminaMath 7B TIR,” Hugging Face repository. https://huggingface.co/AI-MO/NuminaMath-7B-TIR; Numina & Hugging Face, 2024.
+275. M. Li et al., “Superfiltering: Weak-to-strong data filtering for fast instruction-tuning,” in Annual meeting of the association for computational linguistics (ACL), 2024.
+276. G. Hinton, O. Vinyals, and J. Dean, “Distilling the knowledge in a neural network,” arXiv preprint arXiv:1503.02531, 2015.
+277. K. Shridhar, A. Stolfo, and M. Sachan, “Distilling reasoning capabilities into smaller language models,” Findings of the Association for Computational Linguistics: ACL 2023, pp. 7059–7073, 2023.
+278. C.-Y. Hsieh et al., “Distilling step-by-step! Outperforming larger language models with less training data and smaller model sizes,” in Findings of the association for computational linguistics: ACL 2023, 2023, pp. 8003–8017. doi: 10.18653/v1/2023.findingsacl.507.
+279. GLM-5 Team et al., “GLM-5: From vibe coding to agentic engineering.” Feb. 2026. doi: 10.48550/arXiv.2602.15763.
+280. DeepSeek-AI, “DeepSeek-V4: Towards highly efficient million-token context intelligence,” DeepSeek-AI, Technical Report, 2026. Available: https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf
+281. Y. Kim and A. M. Rush, “Sequence-level knowledge distillation,” in Proceedings of the 2016 conference on empirical methods in natural language processing, Austin, Texas: Association for Computational Linguistics, Nov. 2016, pp. 1317–1327. doi: 10.18653/v1/D16-1139.
+282. V. Sanh, L. Debut, J. Chaumond, and T. Wolf, “DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter.” 2019. doi: 10.48550/arXiv.1910.01108.
+283. X. Jiao et al., “TinyBERT: Distilling BERT for natural language understanding.” 2020. doi: 10.48550/arXiv.1909.10351.
+284. K. Arora, L. El Asri, H. Bahuleyan, and J. C. K. Cheung, “Why exposure bias matters: An imitation learning perspective of error accumulation in language generation,” in Findings of the association for computational linguistics: ACL 2022, S. Muresan, P. Nakov, and A. Villavicencio, Eds., Dublin, Ireland: Association for Computational Linguistics, May 2022, pp. 700–710. doi: 10.18653/v1/2022.findings-acl.58.
+285. M. Song and M. Zheng, “A survey of on-policy distillation for large language models.” 2026. Available: https://arxiv.org/abs/2604.00626
+286. Y. Gu, L. Dong, F. Wei, and M. Huang, “MiniLLM: Knowledge distillation of large language models,” in The twelfth international conference on learning representations, 2024. Available: https://openreview.net/forum?id=5h0qf7IBZZ
+287. R. Agarwal et al., “On-policy distillation of language models: Learning from selfgenerated mistakes,” in The twelfth international conference on learning representations, 2024. Available: https://openreview.net/forum?id=3zKtaqxLhWrlhfbook.com 219[288] S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation learning and structured prediction to no-regret online learning,” in Proceedings of the fourteenth international conference on artificial intelligence and statistics, G. Gordon, D. Dunson, and M. Dudik, Eds., in Proceedings of machine learning research, vol. 15. Fort Lauderdale, FL, USA: PMLR, 2011, pp. 627–635. doi: 10.48550/arXiv.1011.0686.
+289. K. Lu and Thinking Machines Lab, “On-policy distillation,” Thinking Machines Lab: Connectionism, Oct. 2025, doi: 10.64434/tml.20251026.
+290. S. Zhao et al., “Self-distilled reasoner: On-policy self-distillation for large language models.” 2026. doi: 10.48550/arXiv.2601.18734.
+291. C. Team, “Introducing composer 2.5.” Cursor Blog, May 18, 2026. Available: https: //cursor.com/blog/composer-2-5
+292. E. Penaloza, D. Vattikonda, N. Gontier, A. Lacoste, L. Charlin, and M. Caccia, “Privileged information distillation for language models.” 2026. Available: https: //arxiv.org/abs/2602.04942
+293. J. Hübotter et al., “Reinforcement learning via self-distillation.” 2026. doi: 10.48550/arXiv.2601.20802.
+294. H. Lee et al., “Rlaif: Scaling reinforcement learning from human feedback with ai feedback,” 2023.
+295. A. Sharma, S. Keh, E. Mitchell, C. Finn, K. Arora, and T. Kollar, “A critical evaluation of AI feedback for aligning large language models,” in Advances in neural information processing systems (NeurIPS), 2024.
+296. L. Castricato, N. Lile, S. Anand, H. Schoelkopf, S. Verma, and S. Biderman, “Suppressing pink elephants with direct principle feedback.” 2024. Available: https: //arxiv.org/abs/2402.07896
+297. W. Yuan et al., “Self-rewarding language models,” in International conference on machine learning (ICML), 2024. Available: https://arxiv.org/abs/2401.10020
+298. L. J. V. Miranda et al., “Hybrid preferences: Learning to route instances for human vs. AI feedback,” pp. 7162–7200, July 2025, doi: 10.18653/v1/2025.acl-long.355.
+299. Y. Xu et al., “RLTHF: Targeted human feedback for LLM alignment,” in International conference on machine learning (ICML), 2025. Available: https://arxiv.org/abs/2502.13417
+300. Z. Wang et al., “Helpsteer: Multi-attribute helpfulness dataset for steerlm,” in Proceedings of the 2024 conference of the north american chapter of the association for computational linguistics: Human language technologies (volume 1: Long papers), 2024, pp. 3371–3384.
+301. B. Wang et al., “Nemotron-cascade: Scaling cascaded reinforcement learning for general-purpose reasoning models,” arXiv preprint arXiv:2512.13607, 2025.
+302. P. Wang et al., “Large language models are not fair evaluators,” in Annual meeting of the association for computational linguistics (ACL), 2024.
+303. T. Wang et al., “Shepherd: A critic for language model generation,” arXiv preprint arXiv:2308.04592, 2023.
+304. P. Ke et al., “CritiqueLLM: Towards an informative critique generation model for evaluation of large language model generation,” in Annual meeting of the association for computational linguistics (ACL), 2024.
+305. J. Li, S. Sun, W. Yuan, R.-Z. Fan, H. Zhao, and P. Liu, “Generative judge for evaluating alignment,” in International conference on learning representations (ICLR), 2024. rlhfbook.com 220[306] S. Kim et al., “Prometheus 2: An open source language model specialized in evaluating other language models,” in Conference on empirical methods in natural language processing (EMNLP), 2024.
+307. S. Lee, S. Kim, S. Park, G. Kim, and M. Seo, “Prometheus-vision: Vision-language model as a judge for fine-grained evaluation,” in Findings of the association for computational linguistics ACL 2024, 2024, pp. 11286–11315.
+308. E. Zhao, P. Awasthi, and S. Gollapudi, “Sample, scrutinize and scale: Effective inference-time search by scaling verification,” in International conference on machine learning (ICML), 2025.
+309. N. Kalra and L. Tang, “Verdict: A library for scaling judge-time compute,” arXiv preprint arXiv:2502.18018, 2025.
+310. A. Madaan et al., “Self-refine: Iterative refinement with self-feedback,” Advances in Neural Information Processing Systems, 2023.
+311. A. Pace, J. Mallinson, E. Malmi, S. Krause, and A. Severyn, “West-of-n: Synthetic preference generation for improved reward modeling,” arXiv preprint arXiv:2401.12086, 2024.
+312. T. Wu et al., “Meta-rewarding language models: Self-improving alignment with llm-as-a-meta-judge,” arXiv preprint arXiv:2407.19594, 2024.
+313. Z. Sun et al., “SALMON: Self-alignment with principle-following reward models,” in The twelfth international conference on learning representations, 2024. Available: https://openreview.net/forum?id=xJbsmB8UMx
+314. M. Y. Guan et al., “Deliberative alignment: Reasoning enables safer language models,” arXiv preprint arXiv:2412.16339, 2024.
+315. Anthropic, “Claude’s constitution.” Accessed: Feb. 07, 2024. [Online]. Available: https://www.anthropic.com/news/claudes-constitution
+316. D. Ganguli et al., “Collective constitutional AI: Aligning a language model with public input.” Anthropic, 2023.
+317. S. Huang et al., “Constitutional AI recipe,” Hugging Face Blog, 2024.
+318. N. Lambert, H. Schoelkopf, A. Gokaslan, L. Soldaini, V. Pyatkin, and L. Castricato, “Self-directed synthetic dialogues and revisions technical report,” arXiv preprint arXiv:2407.18421, 2024.
+319. Z. Sun et al., “Principle-driven self-alignment of language models from scratch with minimal human supervision,” in Thirty-seventh conference on neural information processing systems, 2023. Available: https://openreview.net/forum?id=p40XRfBX96
+320. J.-P. Fränken, E. Zelikman, R. Rafailov, K. Gandhi, T. Gerstenberg, and N. Goodman, “Self-supervised alignment with mutual information: Learning to follow principles without preference labels,” Advances in Neural Information Processing Systems, 2024.
+321. A. Gunjal et al., “Rubrics as rewards: Reinforcement learning beyond verifiable domains.” 2025. doi: 10.48550/arXiv.2507.17746.
+322. V. Viswanathan et al., “Checklists are better than reward models for aligning language models.” 2025. doi: 10.48550/arXiv.2507.18624.
+323. M. Rezaei et al., “Online rubrics elicitation from pairwise comparisons.” 2025. doi: 10.48550/arXiv.2510.07284.
+324. T. Liu et al., “OpenRubrics: Towards scalable synthetic rubric generation for reward modeling and LLM alignment.” 2025. doi: 10.48550/arXiv.2510.07743. rlhfbook.com 221[325] Y. He et al., “AdvancedIF: Rubric-based benchmarking and reinforcement learning for advancing LLM instruction following.” 2025. doi: 10.48550/arXiv.2511.10507.
+326. R. Shao et al., “DR tulu: Reinforcement learning with evolving rubrics for deep research.” 2025. doi: 10.48550/arXiv.2511.19399.
+327. M. Sharma et al., “ResearchRubrics: A benchmark of prompts and rubrics for evaluating deep research agents.” 2025. doi: 10.48550/arXiv.2511.07685.
+328. J. Ruan et al., “ExpertLongBench: Benchmarking language models on expertlevel long-form generation tasks with structured checklists.” 2025. doi: 10.48550/arXiv.2506.01241.
+329. S. Reed and N. De Freitas, “Neural programmer-interpreters,” in International conference on learning representations (ICLR), 2016.
+330. P. Lewis et al., “Retrieval-augmented generation for knowledge-intensive nlp tasks,” Advances in neural information processing systems, vol. 33, pp. 9459–9474, 2020.
+331. L. Gao et al., “Pal: Program-aided language models,” in International conference on machine learning, PMLR, 2023, pp. 10764–10799.
+332. A. Parisi, Y. Zhao, and N. Fiedel, “Talm: Tool augmented language models,” arXiv preprint arXiv:2205.12255, 2022.
+333. T. Schick et al., “Toolformer: Language models can teach themselves to use tools,” in Advances in neural information processing systems (NeurIPS), 2023.
+334. S. G. Patil, T. Zhang, X. Wang, and J. E. Gonzalez, “Gorilla: Large language model connected with massive APIs,” in Advances in neural information processing systems (NeurIPS), 2024.
+335. Anthropic, “Model context protocol (MCP).” https://modelcontextprotocol.io/,2024.
+336. A. M. Bran, S. Cox, O. Schilter, C. Baldassari, A. D. White, and P. Schwaller, “Chemcrow: Augmenting large-language models with chemistry tools,” arXiv preprint arXiv:2304.05376, 2023.
+337. B. Li et al., “Mmedagent: Learning to use medical tools with multi-modal agent,” in Conference on empirical methods in natural language processing (EMNLP), 2024.
+338. K. Zhang, J. Li, G. Li, X. Shi, and Z. Jin, “Codeagent: Enhancing code generation with tool-integrated agent systems for real-world repo-level coding challenges,” arXiv preprint arXiv:2401.07339, 2024.
+339. S. Yao, N. Shinn, P. Razavi, and K. Narasimhan, “τ-bench: A benchmark for tool-agent-user interaction in real-world domains.” June 2024. doi: 10.48550/arXiv.2406.12045.
+340. Y. Qin et al., “ToolLLM: Facilitating large language models to master 16000+ realworld APIs,” in International conference on learning representations (ICLR), July 2024. doi: 10.48550/arXiv.2307.16789.
+341. S. Yao et al., “React: Synergizing reasoning and acting in language models,” in International conference on learning representations (ICLR), 2023.
+342. J. Schulman, “Proxy objectives in reinforcement learning from human feedback.” Invited talk at the International Conference on Machine Learning (ICML), 2023. Available: https://icml.cc/virtual/2023/invited-talk/21549
+343. C. Zhang, O. Vinyals, R. Munos, and S. Bengio, “A study on overfitting in deep reinforcement learning,” arXiv preprint arXiv:1804.06893, 2018.
+344. C. A. Goodhart and C. Goodhart, Problems of monetary management: The UK experience. Springer, 1984. rlhfbook.com 222[345] K. Hoskin, “The ‘awful idea of accountability’: Inscribing people into the measurement of objects,” Accountability: Power, ethos and the technologies of managing, vol. 265, 1996.
+346. T. Lu and C. Boutilier, “Learning mallows models with pairwise preferences,” in Proceedings of the 28th international conference on machine learning (icml-11), 2011, pp. 145–152.
+347. S. Han et al., “Wildguard: Open one-stop moderation tools for safety risks, jailbreaks, and refusals of llms,” in Advances in neural information processing systems (NeurIPS), 2024.
+348. H. Inan et al., “Llama guard: Llm-based input-output safeguard for human-ai conversations,” arXiv preprint arXiv:2312.06674, 2023.
+349. P. Röttger, H. R. Kirk, B. Vidgen, G. Attanasio, F. Bianchi, and D. Hovy, “Xstest: A test suite for identifying exaggerated safety behaviours in large language models,” in Conference of the north american chapter of the association for computational linguistics (NAACL), 2024.
+350. T. Coste, U. Anwar, R. Kirk, and D. Krueger, “Reward model ensembles help mitigate overoptimization,” in International conference on learning representations (ICLR), 2024.
+351. T. Moskovitz et al., “Confronting reward model overoptimization with constrained RLHF,” in International conference on learning representations (ICLR), 2024.
+352. R. Rafailov et al., “Scaling laws for reward model overoptimization in direct alignment algorithms,” Advances in Neural Information Processing Systems, vol. 37, pp. 126207–126242, 2024.
+353. S. Zhuang and D. Hadfield-Menell, “Consequences of misaligned AI,” Advances in Neural Information Processing Systems, vol. 33, pp. 15763–15773, 2020.
+354. N. Jaques, S. Gu, D. Bahdanau, J. M. Hernández-Lobato, R. E. Turner, and D. Eck, “Sequence tutor: Conservative fine-tuning of sequence generation models with kl-control,” in International conference on machine learning, PMLR, 2017, pp. 1645–1654.
+355. N. Jaques et al., “Human-centric dialog training via offline reinforcement learning,” in Conference on empirical methods in natural language processing (EMNLP), 2020.
+356. H. Chen, N. Razin, K. Narasimhan, and D. Chen, “Retaining by doing: The role of on-policy data in mitigating forgetting.” 2025. Available: https://arxiv.org/abs/2510.18874
+357. I. Shenfeld, J. Pari, and P. Agrawal, “RL’s razor: Why online reinforcement learning forgets less,” in The fourteenth international conference on learning representations, 2026. Available: https://openreview.net/forum?id=7HNRYT4V44
+358. R. Y. Pang, W. Yuan, K. Cho, H. He, S. Sukhbaatar, and J. Weston, “Iterative reasoning preference optimization,” in Advances in neural information processing systems (NeurIPS), 2024.
+359. D. Hendrycks et al., “Measuring massive multitask language understanding,” in International conference on learning representations (ICLR), 2021.
+360. A. Mallen, A. Asai, V. Zhong, R. Das, H. Hajishirzi, and D. Khashabi, “When not to trust language models: Investigating effectiveness and limitations of parametric and non-parametric memories,” arXiv preprint, 2022. rlhfbook.com 223[361] S. Lin, J. Hilton, and O. Evans, “Truthfulqa: Measuring how models mimic human falsehoods,” in Annual meeting of the association for computational linguistics (ACL), 2022.
+362. M. Suzgun et al., “Challenging BIG-bench tasks and whether chain-of-thought can solve them,” in Annual meeting of the association for computational linguistics (ACL), 2023.
+363. D. Dua, Y. Wang, P. Dasigi, G. Stanovsky, S. Singh, and M. Gardner, “DROP: A reading comprehension benchmark requiring discrete reasoning over paragraphs,” in Conference of the north american chapter of the association for computational linguistics (NAACL), 2019.
+364. D. Hendrycks et al., “Measuring mathematical problem solving with the MATH dataset,” NeurIPS, 2021.
+365. M. Chen et al., “Evaluating large language models trained on code,” 2021, Available: https://arxiv.org/abs/2107.03374
+366. J. Liu, C. S. Xia, Y. Wang, and L. Zhang, “Is your code generated by chatGPT really correct? Rigorous evaluation of large language models for code generation,” in Thirty-seventh conference on neural information processing systems, 2023. Available: https://openreview.net/forum?id=1qvx610Cu7
+367. D. Rein et al., “GPQA: A graduate-level google-proof q&a benchmark,” arXiv preprint arXiv:2311.12022, 2023.
+368. L. Phan, A. Gatti, Z. Han, N. Li, and H. et al. Zhang, “Humanity’s last exam,” arXiv preprint arXiv:2501.14249, 2025.
+369. R. Aleithan, H. Xue, M. M. Mohajer, E. Nnorom, G. Uddin, and S. Wang, “SWE- Bench+: Enhanced coding benchmark for LLMs,” arXiv preprint arXiv:2410.06992, 2024.
+370. N. Jain et al., “LiveCodeBench: Holistic and contamination-free evaluation of large language models for code,” arXiv preprint arXiv:2403.07974, 2024.
+371. S. AI, “SEAL LLM leaderboards: Expert-driven private evaluations.” 2024. Available: https://scale.com/leaderboard
+372. S. Schulhoff et al., “The prompt report: A systematic survey of prompting techniques,” arXiv preprint arXiv:2406.06608, 2024.
+373. J. Robinson, C. M. Rytting, and D. Wingate, “Leveraging large language models for multiple choice question answering,” in International conference on learning representations, 2023. Available: https://openreview.net/forum?id=upQ4o-ygvJ
+374. J. Wei et al., “Chain-of-thought prompting elicits reasoning in large language models,” Advances in neural information processing systems, vol. 35, pp. 24824–24837, 2022.
+375. T. Kojima, S. S. Gu, M. Reid, Y. Matsuo, and Y. Iwasawa, “Large language models are zero-shot reasoners,” Advances in neural information processing systems, vol. 35, pp. 22199–22213, 2022.
+376. J. Li et al., “Numinamath: The largest public dataset in ai4maths with 860k pairs of competition math problems and solutions,” Hugging Face repository, vol. 13, p. 9, 2024.
+377. L. Yu et al., “Metamath: Bootstrap your own mathematical questions for large language models,” in International conference on learning representations (ICLR), 2024.
+378. J. Achiam et al., “Gpt-4 technical report,” arXiv preprint arXiv:2303.08774, 2023. rlhfbook.com 224[379] OpenAI, “Introducing SWE-bench verified.” Aug. 2024. Available: https://openai.com/index/introducing-swe-bench-verified/
+380. A. K. Singh et al., “Evaluation data contamination in LLMs: How do we measure it and (when) does it matter?” arXiv preprint arXiv:2411.03923, 2024.
+381. M. Wu et al., “Reasoning or memorization? Unreliable results of reinforcement learning due to data contamination,” arXiv preprint arXiv:2507.10532, 2025.
+382. K. Huang et al., “MATH-perturb: Benchmarking LLMs’ math reasoning abilities against hard perturbations,” in International conference on machine learning (ICML), 2025.
+383. UK AI Safety Institute, “Inspect AI: Framework for Large Language Model Evaluations.” https://github.com/UKGovernmentBEIS/inspect_ai,2024.
+384. C. Fourrier, N. Habib, H. Kydlicek, T. Wolf, and L. Tunstall, “LightEval: A lightweight framework for LLM evaluation.” https://github.com/huggingface/lighteval,2023.
+385. C. Fourrier, N. Habib, A. Lozovskaya, K. Szafer, and T. Wolf, “Open LLM leaderboard v2.” https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard;Hugging Face, 2024.
+386. L. Gao et al., “A Framework for Few-Shot Language Model Evaluation.” Zenodo, 2023. doi: 10.5281/zenodo.10256836.
+387. S. Black et al., “GPT-NeoX-20B: An open-source autoregressive language model,” in Proceedings of the ACL workshop on challenges & perspectives in creating large language models, 2022. Available: https://arxiv.org/abs/2204.06745
+388. Y. Gu, O. Tafjord, B. Kuehl, D. Haddad, J. Dodge, and H. Hajishirzi, “OLMES: A Standard for Language Model Evaluations,” in Findings of the north american chapter of the association for computational linguistics (NAACL), 2025.
+389. P. Liang et al., “Holistic evaluation of language models,” Transactions on Machine Learning Research, 2023, doi: 10.1111/nyas.15007.
+390. MosaicML, “Mosaic Eval Gauntlet v0.3.0 — Evaluation Suite.” https://github.com/mosaicml/llm-foundry/blob/main/scripts/eval/local_data/EVAL_GAUNTLET.md, 2024.
+391. S. Maiya, H. Bartsch, N. Lambert, and E. Hubinger, “Open character training: Shaping the persona of AI assistants through constitutional AI,” arXiv preprint arXiv:2511.01689, 2025.
+392. A. M. Turner et al., “Activation addition: Steering language models without optimization,” arXiv e-prints, pp. arXiv–2308, 2023.
+393. R. Chen, A. Arditi, H. Sleight, O. Evans, and J. Lindsey, “Persona vectors: Monitoring and controlling character traits in language models.” 2025. Available: https://arxiv.org/abs/2507.21509
+394. Anthropic, “Claude’s character.” 2024. Available: https://www.anthropic.com/research/claude-character
+395. T. Mikolov, K. Chen, G. Corrado, and J. Dean, “Efficient estimation of word representations in vector space,” arXiv preprint arXiv:1301.3781, 2013.
+396. A. Zou et al., “Representation engineering: A top-down approach to AI transparency,” in Proceedings of the 62nd annual meeting of the association for computational linguistics, 2024. Available: https://aclanthology.org/2024.acl-long.828/
+397. T. Bas and K. Novak, “What can we actually steer? A multi-behavior study of activation control.” 2026. Available: https://arxiv.org/abs/2511.18284rlhfbook.com 225[398] Z. Feng et al., “PERSONA: Algebraic personality composition in language models.” 2026. Available: https://arxiv.org/abs/2502.13131
+399. C. Lu, J. Gallagher, J. Michala, K. Fish, and J. Lindsey, “The assistant axis: Situating and stabilizing the default persona of language models,” arXiv preprint arXiv:2601.10387, 2026, Available: https://arxiv.org/abs/2601.10387
+400. R. Ye et al., “Your language model secretly contains personality subnetworks,” in The fourteenth international conference on learning representations, 2026. Available: https://openreview.net/forum?id=zzo3Sy3NSX
+401. J. Frankle and M. Carbin, “The lottery ticket hypothesis: Finding sparse, trainable neural networks,” in International conference on learning representations, 2019. Available: https://openreview.net/forum?id=rJl-b3RcF7
+402. Anthropic, “Claude 4.5 opus soul document.” 2025. Available: https://www.lesswrong.com/posts/vpNG99GhbBoLov9og/claude-4-5-opus-soul-document
+403. A. Askell, “Post on X regarding character training with soul documents.” 2025. Available: https://x.com/AmandaAskell/status/1995610567923695633
+404. A. Vaswani et al., “Attention is all you need,” in Neural information processing systems, 2017. Available: https://api.semanticscholar.org/CorpusID:13756489
+405. D. Bahdanau, K. Cho, and Y. Bengio, “Neural machine translation by jointly learning to align and translate,” in International conference on learning representations (ICLR), 2015. Available: https://arxiv.org/abs/1409.0473
+406. G. Team et al., “Gemma 2: Improving open language models at a practical size,” arXiv preprint arXiv:2408.00118, 2024.
+407. J. Bai et al., “Qwen technical report,” arXiv preprint arXiv:2309.16609, 2023.
+408. G. Wang, S. Cheng, X. Zhan, X. Li, S. Song, and Y. Liu, “Openchat: Advancing open-source language models with mixed-quality data,” in International conference on learning representations (ICLR), 2024.
+409. P. Yadav et al., “What matters for model merging at scale?” arXiv preprint arXiv:2410.03617, 2024. rlhfbook.com 226

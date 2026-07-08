@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RLHF 中文版 — 從人類回饋中強化學習</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<section class="hero">
+  <div class="eyebrow">繁體中文全譯本 · 互動版</div>
+  <h1>從人類回饋中強化學習<br>Reinforcement Learning from Human Feedback</h1>
+  <p class="sub">Nathan Lambert 著。一本聚焦語言模型的 RLHF 與後訓練（post-training）簡明導論：從指令微調、獎勵模型，到 PPO／GRPO、DPO、拒絕採樣與推理模型。每一章都附有互動實驗，邊玩邊懂核心概念。</p>
+  <p class="sub" style="font-size:.82rem">由台灣 <a href="https://github.com/ai-twinkle">Twinkle AI Community</a> 翻譯維護的非官方社群翻譯版本。</p>
+  <div class="meta">
+    <div><b>17</b>章節</div>
+    <div><b>3</b>附錄</div>
+    <div><b>49</b>插圖</div>
+    <div><b>20</b>互動實驗</div>
+  </div>
+</section>
+<div class="grid-wrap">
+  <h2>章節</h2>
+  <div class="chapter-grid">
+    <a class="card" href="chapters/ch01.html"><span class="badge">互動實驗</span><span class="no">第 1 章</span><span class="zh">導論</span><span class="en">Introduction</span><span class="desc">RLHF 是什麼、為何誕生、三步驟流程與後訓練的整體直覺。</span></a>
+    <a class="card" href="chapters/ch02.html"><span class="badge">互動實驗</span><span class="no">第 2 章</span><span class="zh">RLHF 簡史</span><span class="en">A Tiny History of RLHF</span><span class="desc">從偏好式 RL 的起源、語言模型時代，到 ChatGPT 之後的爆發。</span></a>
+    <a class="card" href="chapters/ch03.html"><span class="badge">互動實驗</span><span class="no">第 3 章</span><span class="zh">訓練總覽</span><span class="en">Training Overview</span><span class="desc">問題形式化、RL 設定的調整，與 InstructGPT／Tülu 3／DeepSeek R1 的經典配方。</span></a>
+    <a class="card" href="chapters/ch04.html"><span class="badge">互動實驗</span><span class="no">第 4 章</span><span class="zh">指令微調</span><span class="en">Instruction Fine-Tuning</span><span class="desc">聊天模板、指令資料的最佳實務與實作細節。</span></a>
+    <a class="card" href="chapters/ch05.html"><span class="badge">互動實驗</span><span class="no">第 5 章</span><span class="zh">獎勵模型</span><span class="en">Reward Modeling</span><span class="desc">Bradley-Terry 模型、架構與實作、ORM／PRM 與 LLM-as-a-judge。</span></a>
+    <a class="card" href="chapters/ch06.html"><span class="badge">互動實驗</span><span class="no">第 6 章</span><span class="zh">強化學習</span><span class="en">Reinforcement Learning</span><span class="desc">策略梯度推導、REINFORCE／PPO／GRPO 全家族與實作要點。</span></a>
+    <a class="card" href="chapters/ch07.html"><span class="badge">互動實驗</span><span class="no">第 7 章</span><span class="zh">推理與推論時擴展</span><span class="en">Reasoning &amp; Inference-Time Scaling</span><span class="desc">RLVR 的角色、推理模型的起源與訓練慣例。</span></a>
+    <a class="card" href="chapters/ch08.html"><span class="badge">互動實驗</span><span class="no">第 8 章</span><span class="zh">直接對齊演算法</span><span class="en">Direct-Alignment Algorithms</span><span class="desc">DPO 的原理與完整推導、數值疑慮與線上／離線之辨。</span></a>
+    <a class="card" href="chapters/ch09.html"><span class="badge">互動實驗</span><span class="no">第 9 章</span><span class="zh">拒絕採樣</span><span class="en">Rejection Sampling</span><span class="desc">生成、評分、微調的逐步流程與 Best-of-N 採樣。</span></a>
+    <a class="card" href="chapters/ch10.html"><span class="badge">互動實驗</span><span class="no">第 10 章</span><span class="zh">偏好的本質</span><span class="en">The Nature of Preferences</span><span class="desc">從經濟學、哲學到最適控制：偏好與效用的跨領域根源。</span></a>
+    <a class="card" href="chapters/ch11.html"><span class="badge">互動實驗</span><span class="no">第 11 章</span><span class="zh">偏好資料</span><span class="en">Preference Data</span><span class="desc">標註介面、排序與評分、資料來源與偏誤陷阱。</span></a>
+    <a class="card" href="chapters/ch12.html"><span class="badge">互動實驗</span><span class="no">第 12 章</span><span class="zh">合成資料與蒸餾</span><span class="en">Synthetic Data &amp; Distillation</span><span class="desc">蒸餾、on-policy 師生訓練、AI 回饋與憲法式 AI。</span></a>
+    <a class="card" href="chapters/ch13.html"><span class="badge">互動實驗</span><span class="no">第 13 章</span><span class="zh">工具使用與函式呼叫</span><span class="en">Tool Use &amp; Function Calling</span><span class="desc">工具呼叫的生成交織、多步驟推理與 MCP。</span></a>
+    <a class="card" href="chapters/ch14.html"><span class="badge">互動實驗</span><span class="no">第 14 章</span><span class="zh">過度最佳化</span><span class="en">Over-Optimization</span><span class="desc">Goodhart 定律、代理目標的質性與量化失控。</span></a>
+    <a class="card" href="chapters/ch15.html"><span class="badge">互動實驗</span><span class="no">第 15 章</span><span class="zh">正則化</span><span class="en">Regularization</span><span class="desc">KL 懲罰、隱性正則化，與「SFT 記憶、RL 泛化」。</span></a>
+    <a class="card" href="chapters/ch16.html"><span class="badge">互動實驗</span><span class="no">第 16 章</span><span class="zh">評估</span><span class="en">Evaluation</span><span class="desc">提示格式、外部評比為何不可靠、污染與工具鏈。</span></a>
+    <a class="card" href="chapters/ch17.html"><span class="badge">互動實驗</span><span class="no">第 17 章</span><span class="zh">打造模型性格與產品</span><span class="en">Model Character &amp; Products</span><span class="desc">性格訓練、persona 向量、模型規格與產品週期。</span></a>
+  </div>
+  <h2>附錄與文獻</h2>
+  <div class="chapter-grid">
+    <a class="card" href="chapters/appa.html"><span class="badge">互動實驗</span><span class="no">附錄 A</span><span class="zh">定義</span><span class="en">Definitions</span><span class="desc">全書使用的符號、定義與延伸詞彙表。</span></a>
+    <a class="card" href="chapters/appb.html"><span class="badge">互動實驗</span><span class="no">附錄 B</span><span class="zh">不只是「風格」</span><span class="en">Beyond &quot;Just Style&quot;</span><span class="desc">為何風格是溝通的載體，以及話多的平衡。</span></a>
+    <a class="card" href="chapters/appc.html"><span class="badge">互動實驗</span><span class="no">附錄 C</span><span class="zh">實務議題</span><span class="en">Practical Issues</span><span class="desc">後訓練的運算成本、評估變異與異常任務辨識。</span></a>
+    <a class="card" href="chapters/bibliography.html"><span class="no">參考文獻</span><span class="zh">參考文獻</span><span class="en">Bibliography</span><span class="desc">全書引用文獻（保留原文）。</span></a>
+  </div>
+</div>
+<footer class="foot">本站為 <a href="https://github.com/ai-twinkle">Twinkle AI Community</a>（台灣）的<strong>非官方社群翻譯</strong>（unofficial community translation），已獲原作者知悉（<a href="https://github.com/natolambert/rlhf-book/issues/472">rlhf-book#472</a>）· 譯自 Nathan Lambert,《Reinforcement Learning from Human Feedback》（<a href="https://rlhfbook.com">rlhfbook.com</a>，2026-07-01 版）· 依 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant">CC BY-NC-SA 4.0</a> 授權翻譯，僅供學習研究、不得作商業用途 · 支持原作者請購買<a href="https://rlhfbook.com">實體書</a> · <a href="https://github.com/ai-twinkle/rlhf-book-zh-tw">GitHub 原始碼</a></footer>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 8 章　直接對齊演算法 — RLHF 中文版</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../index.html">RLHF 中文版<span>從人類回饋中強化學習</span></a>
+  <nav class="chapnav"><a href="ch07.html">← 第 7 章</a><span class="chapnav-current">第 8 章　直接對齊演算法</span><a href="ch09.html">第 9 章 →</a></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar"><nav id="toc" class="toc"><h2>本章目錄</h2></nav></aside>
+  <main class="main">
+    <div id="lab-banner"></div>
+    <article id="content" class="prose"></article>
+    <section id="lab" class="lab" hidden>
+      <h2 class="lab-title">🧪 互動實驗室</h2>
+      <div id="lab-intro"></div>
+      <div id="lab-root"></div>
+    </section>
+    <nav class="pager"><a class="prev" href="ch07.html"><span class="dir">← 上一章</span><div class="ttl">第 7 章　推理與推論時擴展</div></a><a class="next" href="ch09.html"><span class="dir">下一章 →</span><div class="ttl">第 9 章　拒絕採樣</div></a></nav>
+    <footer class="pagefoot">本站為 <a href="https://github.com/ai-twinkle">Twinkle AI Community</a>（台灣）的<strong>非官方社群翻譯</strong>（unofficial community translation）· 譯自 Nathan Lambert,《Reinforcement Learning from Human Feedback》（<a href="https://rlhfbook.com">rlhfbook.com</a>）· 依 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hant">CC BY-NC-SA 4.0</a> 授權，僅供學習研究、不得作商業用途。</footer>
+  </main>
+</div>
+<script type="text/markdown" id="chapter-md">
+# 第 8 章　直接對齊演算法（Direct-Alignment Algorithms）
+
+> 譯自 Nathan Lambert, *Reinforcement Learning from Human Feedback*（rlhfbook.com），2026-07-01 版，原文第 105–116 頁。
+
+直接對齊演算法（Direct Alignment Algorithms, DAAs）讓我們得以在完全不訓練中介獎勵模型（reward model）、也不使用強化學習最佳化器的情況下，更新模型以求解相同的 RLHF 目標。DAAs 求解的是我們一直在研究的同一個偏好學習問題（甚至使用一模一樣的資料！），目的是讓語言模型更對齊、更聰明、更容易使用。由於不需要獎勵模型與線上最佳化，DAAs 的實作遠為簡單，能降低訓練期間的運算開銷，也讓實驗變得更容易。本章詳述推導這些演算法所需的複雜數學，並展示這些有時頗為繁瑣的推導，最終如何化為簡潔的實作。
+
+最著名的 DAA——同時也是催化了整個語言模型對齊學術運動的方法——是直接偏好最佳化（Direct Preference Optimization, DPO）[25]。就其核心而言，DPO 使用梯度上升（gradient ascent）來求解同一個帶約束的 RLHF 目標（見第 3 章）：
+
+$$
+\max_{\pi} \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ r_\theta(x, y) \right] - \beta \mathcal{D}_{\mathrm{KL}} \left( \pi(y|x) \| \pi_{\mathrm{ref}}(y|x) \right) \tag{79}
+$$
+
+自 2023 年 5 月發表以來——經過一段短暫的延遲，社群才摸索出使用 DPO 的正確資料與超參數（hyperparameters）（具體來說，是出乎意料低的學習率）——許多熱門模型都使用了 DPO 或其變體，從 2023 年 10 月率先採用的 Zephyr-$\beta$ [26]、Llama 3 Instruct [29]、Tülu 2 [27] 與 3 [6]、Nemotron 4 340B [30]，以及其他模型。嚴格說來，序列似然校準（Sequence Likelihood Calibration, SLiC-HF）才是最早發表的現代直接對齊演算法 [189]，但由於多種因素的綜合影響，它並未流行起來（要解開研究方法被採用與否的來龍去脈，向來是件棘手的事）。
+
+DPO 與 DAAs 最具影響力之處，在於降低了實驗語言模型後訓練（post-training）的入門門檻——它使用較少的運算資源、從零開始實作更容易，而且無論是玩具範例還是生產環境的案例都更容易跑起來。
+
+*在本章中，我們用 $x$ 表示提示詞（prompts）、$y$ 表示補全（completions）。這種記號在語言模型文獻中很常見，因為這些方法操作的對象是完整的提示詞—補全配對，而非個別 token。*
+
+## 8.1 直接偏好最佳化（Direct Preference Optimization）
+
+這裡我們先解釋 DPO 運作原理的直覺，再完整地重新推導其核心方程式。
+
+### 8.1.1 DPO 的運作原理（How DPO Works）
+
+從表層來看，DPO 是直接最佳化一個策略（policy）來求解 RLHF 目標。其損失函數（我們會在下方的推導中再次回顧）比較的是：相對於一個參考模型（reference model），所學策略對被選（chosen）與被拒（rejected）補全的機率偏移了多少。由 Bradley-Terry 獎勵模型推導出的損失函數如下：
+
+$$
+\mathcal{L}_{\mathrm{DPO}}(\pi_\theta; \pi_{\mathrm{ref}}) = -\mathbb{E}_{(x, y_c, y_r) \sim \mathcal{D}} \left[ \log \sigma \left( \beta \log \frac{\pi_\theta(y_c \mid x)}{\pi_{\mathrm{ref}}(y_c \mid x)} - \beta \log \frac{\pi_\theta(y_r \mid x)}{\pi_{\mathrm{ref}}(y_r \mid x)} \right) \right] \tag{80}
+$$
+
+在 sigmoid 函數內部，第一項 $\beta \log \frac{\pi_\theta(y_c|x)}{\pi_{\mathrm{ref}}(y_c|x)}$ 衡量的是策略相對於參考模型，對*被選*補全的機率提高了多少；第二項則對*被拒*補全做同樣的衡量。當被選補全的偏移量超過被拒補全的偏移量時——也就是策略學會偏好正確的回應時——損失便會下降。
+
+自始至終，$\beta$ 都是一個超參數，用來在獎勵最佳化與「最終模型與初始參考模型之間的 KL 散度（KL divergence）」之間取得平衡（亦即平衡過度最佳化——這是正確使用 DPO 時的關鍵超參數）。這仰賴 DPO 訓練中取代外部獎勵模型的隱式獎勵（implicit reward），它是一個機率的對數比值（log-ratio）：
+
+$$
+r(x, y) = \beta \log \frac{\pi_r(y \mid x)}{\pi_{\mathrm{ref}}(y \mid x)} \tag{81}
+$$
+
+其中 $\pi_r(y \mid x)$ 是我們正在求解的、精確的最適獎勵策略。這來自於針對最適策略推導 Bradley-Terry 獎勵（如式 96 所示），亦見於第 5 章 Bradley-Terry 模型一節。本質上，正如 DPO 論文所述，這種重新參數化（reparameterization）讓我們得以「以最適策略而非獎勵模型來表達人類偏好資料的機率」——也就是說，我們可以完全繞過學習一個顯式的獎勵模型。
+
+讓我們考慮式 80 中最佳化器必須降低的損失。在這裡，當被選回應的對數比值大於被拒回應的對數比值（皆以參考模型正規化）時，損失會更低。實務上，這是模型在資料所呈現的 token 序列上的對數機率（log-probabilities）之總和。因此，DPO 是在擴大被選與被拒回應之間相對對數機率的差距。
+
+有了式 81 的獎勵，我們可以寫出損失的梯度，進一步解讀其中發生的事：
+
+$$
+\nabla_\theta \mathcal{L}_{\mathrm{DPO}}(\pi_\theta; \pi_{\mathrm{ref}}) = -\beta \mathbb{E}_{(x, y_c, y_r) \sim \mathcal{D}} \left[ w \cdot \left( \nabla_\theta \log \pi_\theta(y_c \mid x) - \nabla_\theta \log \pi_\theta(y_r \mid x) \right) \right] \tag{82}
+$$
+
+其中 $w = \sigma\left(r_\theta(x, y_r) - r_\theta(x, y_c)\right)$。
+
+在這裡，梯度透過以下方式求解上述目標：
+
+- sigmoid 函數 $\sigma(\cdot)$ 內的第一項，會產生一個介於 0 到 1 之間的參數更新權重，當獎勵估計錯誤時該權重會更高。當被拒樣本反而比被選樣本更受偏好時，權重更新應該更大！
+- 其次，內層方括號 $[\cdot]$ 中的各項會提高被選回應 $y_c$ 的似然（likelihood），並降低被拒回應 $y_r$ 的似然。
+- 這些項以 $\beta$ 加權，它控制更新如何在「正確排序補全」與「相對於 KL 散度的距離」之間取得平衡。
+
+核心直覺是：DPO 正在擬合一個隱式獎勵模型，而其對應的最適策略可以用閉合解（closed form）的形式提取出來（式 96，這要歸功於梯度下降與我們的機器學習工具）。由於 DPO 損失可以直接微分，計算精確梯度是直截了當的，而不需要透過訓練獎勵模型、再抽樣補全來評分的方式去估計它。經常被誤解的一點是：DPO 的核心其實是在學習一個獎勵模型——這正是其論文副標題 *Your Language Model is Secretly a Reward Model*（你的語言模型其實是個獎勵模型）的由來。這一點很容易與「DPO 目標直接訓練策略」混淆，因此研讀下方的推導有助於完整理解。
+
+透過隱式獎勵模型的學習，DPO 是在「資料集中的資料」與「目標函數中特定的 KL 約束 $\beta$」給定的條件下，產生 RLHF 目標的最適解。在這裡，DPO 之所以能針對特定的 KL 散度求解出精確的策略，是因為其生成過程不像策略梯度演算法那樣是線上（online）的——這是它與用於偏好調整的 RL 方法的核心差異。在許多方面，這使得 DPO 的 $\beta$ 值比線上 RL 方法更容易調整，但關鍵且符合直覺的是，最適值取決於被訓練的模型以及訓練它的資料。
+
+對於每一批偏好資料——由許多補全配對 $y_{chosen} \succ y_{rejected}$ 組成——DPO 直接朝最適解採取梯度步。它遠比策略梯度方法簡單。
+
+![圖](../webapp/assets/figures/fig-p107-1.png)
+*圖 26：DPO 剛發表時，在研究社群中引發了一場關於「該如何做 RLHF 與偏好學習」的激烈論戰。這張迷因（meme）出色地捕捉了當時的氛圍——論戰常常顯得刻意且言過其實，但無論是剛入門的人還是頂尖實驗室，都從 DPO 中獲得了巨大的助益。DPO 簡潔性迷因，出處：Tom Goldstein。*
+
+### 8.1.2 DPO 推導（DPO Derivation）
+
+DPO 的推導包含兩個主要部分。首先，作者展示了「最適地求解本書通篇使用的 RLHF 目標」的策略形式。接著，他們展示如何從成對偏好資料（即 Bradley-Terry 模型）得到該解。
+
+#### 8.1.2.1 推導最適 RLHF 解（Deriving the Optimal RLHF Solution）
+
+一開始，我們應該再次考慮 RLHF 最佳化目標，此處標明我們希望最大化這個量：
+
+$$
+\max_{\pi} \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ r_\theta(x, y) \right] - \beta \mathcal{D}_{\mathrm{KL}} \left( \pi(y|x) \| \pi_{\mathrm{ref}}(y|x) \right) \tag{83}
+$$
+
+在這裡，雙重期望值只作用於計算期望獎勵的抽樣，因為 KL 項仍是一個解析表達式。首先，讓我們展開 KL 散度的定義。回想 $\mathcal{D}_{\mathrm{KL}}(\pi \| \pi_{\mathrm{ref}}) = \mathbb{E}_{y \sim \pi} \left[ \log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} \right]$，其中求和中的 $\pi(y|x)$ 權重變成了抽樣分布。由於兩項現在共享同一個對 $y \sim \pi(y|x)$ 的期望，我們可以將它們合併：
+
+$$
+\max_{\pi} \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ r(x, y) - \beta \log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} \right] \tag{84}
+$$
+
+接著，把負號從方括號內的差式中提出來。為此，先將其拆成兩項：
+
+$$
+= \max_{\pi} \left( \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ r(x, y) \right] - \beta\, \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} \right] \right) \tag{85}
+$$
+
+然後，乘以 $-1$ 將最大化轉換為最小化：
+
+$$
+= \min_{\pi} \left( -\mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ r(x, y) \right] + \beta\, \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} \right] \right) \tag{86}
+$$
+
+除以 $\beta$ 並重新合併：
+
+$$
+= \min_{\pi} \left( \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} - \frac{1}{\beta} r(x, y) \right] \right) \tag{87}
+$$
+
+接下來，我們必須引入一個配分函數（partition function）$Z(x)$：
+
+$$
+Z(x) = \sum_y \pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r(x, y) \right) \tag{88}
+$$
+
+配分函數作為未正規化密度 $\pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r(x, y) \right)$ 的正規化因子，使其對每個固定的 $x$ 成為 $y$ 上的一個合法機率函數。隨著推導的進行，我們很快就會清楚為何確切需要它。
+
+代入之後，我們得到中間形式的轉換：
+
+$$
+\min_{\pi} \mathbb{E}_{x \sim \mathcal{D}} \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\frac{1}{Z(x)} \pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r(x, y) \right)} - \log Z(x) \right] \tag{89}
+$$
+
+要瞭解這是如何得到的，考慮式 87 中方括號內的最佳化內部：
+
+$$
+\log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} - \frac{1}{\beta} r(x, y) \tag{90}
+$$
+
+接著，兩邊加上 $\log Z(x) - \log Z(x)$：
+
+$$
+= \log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} - \frac{1}{\beta} r(x, y) + \log Z(x) - \log Z(x) \tag{91}
+$$
+
+然後，將各項分組：
+
+$$
+= \left( \log \frac{\pi(y|x)}{\pi_{\mathrm{ref}}(y|x)} + \log Z(x) \right) - \log Z(x) - \frac{1}{\beta} r(x, y) \tag{92}
+$$
+
+利用 $\log(x) + \log(y) = \log(x \cdot y)$（並將 $Z$ 移到分母），我們得到：
+
+$$
+= \log \frac{\pi(y|x)}{\frac{1}{Z(x)} \pi_{\mathrm{ref}}(y|x)} - \log Z(x) - \frac{1}{\beta} r(x, y) \tag{93}
+$$
+
+接下來，我們將 $\frac{1}{\beta} r(x, y)$ 展開為 $\log \exp \frac{1}{\beta} r(x, y)$，並執行同樣的操作，就能得到式 89——此處我們稍微改寫如下：
+
+$$
+\min_{\pi} \mathbb{E}_{x \sim \mathcal{D}} \left[ \mathbb{E}_{y \sim \pi(y|x)} \left[ \log \frac{\pi(y|x)}{\frac{1}{Z(x)} \pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r(x, y) \right)} \right] - \log Z(x) \right] \tag{94}
+$$
+
+有了這個最佳化形式，我們就需要實際求解最適策略 $\pi^*$。由於我們引入了配分函數 $Z(x)$，使得 $\frac{1}{Z(x)} \pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r(x, y) \right)$ 這一項成為 $y$ 上的合法機率分布，我們便能認出：內層的期望值實際上正是一個標準的 KL 散度！
+
+$$
+\min_{\pi} \mathbb{E}_{x \sim \mathcal{D}} \left[ \mathcal{D}_{\mathrm{KL}} \left( \pi(y|x) \,\middle\|\, \frac{1}{Z(x)} \pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r(x, y) \right) \right) - \log Z(x) \right] \tag{95}
+$$
+
+由於 $\log Z(x)$ 這一項不依賴於 $\pi$（即我們正在最佳化的策略），我們可以忽略它。剩下的就只有「我們正在學習的策略」與「一個由配分函數、$\beta$、獎勵及參考策略構成的形式」之間的 KL 散度。吉布斯不等式（Gibbs' inequality）告訴我們：它在距離為 0 時取得最小值，且僅當兩個量相等時才成立！因此，我們得到最適策略：
+
+$$
+\pi^*(y|x) = \pi(y|x) = \frac{1}{Z(x)} \pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r(x, y) \right) \tag{96}
+$$
+
+#### 8.1.2.2 為 BT 模型推導 DPO 目標（Deriving DPO Objectives for BT Models）
+
+一開始，回想第 5 章「獎勵建模」與第 11 章「偏好資料」中，人類偏好的 Bradley-Terry 模型的形式為：
+
+$$
+p^*(y_1 \succ y_2 \mid x) = \frac{\exp\left( r^*(x, y_1) \right)}{\exp\left( r^*(x, y_1) \right) + \exp\left( r^*(x, y_2) \right)} \tag{97}
+$$
+
+透過操作式 96，我們可以求解最適獎勵。首先，對兩邊取對數：
+
+$$
+\log \pi^*(y|x) = \log \left( \frac{1}{Z(x)} \pi_{\mathrm{ref}}(y|x) \exp\left( \frac{1}{\beta} r^*(x, y) \right) \right) \tag{98}
+$$
+
+利用 $\log(abc) = \log a + \log b + \log c$ 展開右式：
+
+$$
+\log \pi^*(y|x) = -\log Z(x) + \log \pi_{\mathrm{ref}}(y|x) + \frac{1}{\beta} r^*(x, y) \tag{99}
+$$
+
+重新整理以求解 $r^*(x, y)$：
+
+$$
+\frac{1}{\beta} r^*(x, y) = \log \pi^*(y|x) - \log \pi_{\mathrm{ref}}(y|x) + \log Z(x) \tag{100}
+$$
+
+兩邊同乘 $\beta$：
+
+$$
+r^*(x, y) = \beta \log \frac{\pi^*(y \mid x)}{\pi_{\mathrm{ref}}(y \mid x)} + \beta \log Z(x) \tag{101}
+$$
+
+接著，我們可以把這個獎勵代入式 97 所示的 Bradley-Terry 方程式，得到：
+
+$$
+p^*(y_1 \succ y_2 \mid x) = \frac{\exp\left( \beta \log \frac{\pi^*(y_1|x)}{\pi_{\mathrm{ref}}(y_1|x)} + \beta \log Z(x) \right)}{\exp\left( \beta \log \frac{\pi^*(y_1|x)}{\pi_{\mathrm{ref}}(y_1|x)} + \beta \log Z(x) \right) + \exp\left( \beta \log \frac{\pi^*(y_2|x)}{\pi_{\mathrm{ref}}(y_2|x)} + \beta \log Z(x) \right)} \tag{102}
+$$
+
+透過將指數表達式從 $e^{a+b}$ 分解為 $e^a e^b$，再消去 $e^{\beta \log Z(x)}$ 各項，上式簡化為：
+
+$$
+p^*(y_1 \succ y_2 \mid x) = \frac{\exp\left( \beta \log \frac{\pi^*(y_1|x)}{\pi_{\mathrm{ref}}(y_1|x)} \right)}{\exp\left( \beta \log \frac{\pi^*(y_1|x)}{\pi_{\mathrm{ref}}(y_1|x)} \right) + \exp\left( \beta \log \frac{\pi^*(y_2|x)}{\pi_{\mathrm{ref}}(y_2|x)} \right)} \tag{103}
+$$
+
+然後，將分子與分母同乘 $\exp\left( -\beta \log \frac{\pi^*(y_1|x)}{\pi_{\mathrm{ref}}(y_1|x)} \right)$，得到：
+
+$$
+p^*(y_1 \succ y_2 \mid x) = \frac{1}{1 + \exp\left( \beta \log \frac{\pi^*(y_2|x)}{\pi_{\mathrm{ref}}(y_2|x)} - \beta \log \frac{\pi^*(y_1|x)}{\pi_{\mathrm{ref}}(y_1|x)} \right)} \tag{104}
+$$
+
+最後，利用 sigmoid 函數的定義 $\sigma(x) = \frac{1}{1 + e^{-x}}$，我們得到：
+
+$$
+p^*(y_1 \succ y_2 \mid x) = \sigma\left( \beta \log \frac{\pi^*(y_1 \mid x)}{\pi_{\mathrm{ref}}(y_1 \mid x)} - \beta \log \frac{\pi^*(y_2 \mid x)}{\pi_{\mathrm{ref}}(y_2 \mid x)} \right) \tag{105}
+$$
+
+這就是給定最適策略 $\pi^*$ 之下，偏好資料在 Bradley-Terry 模型下的似然。回想第 5 章「獎勵建模」中，我們推導 Bradley-Terry 目標的方式是最大化似然，或等價地最小化負對數似然（negative log-likelihood），這就給出了損失：
+
+$$
+\begin{aligned}
+\mathcal{L}_{\mathrm{DPO}}(\pi_\theta; \pi_{\mathrm{ref}}) &= -\mathbb{E}_{(x, y_c, y_r) \sim \mathcal{D}} \left[ \log p(y_c \succ y_r \mid x) \right] \\
+&= -\mathbb{E}_{(x, y_c, y_r) \sim \mathcal{D}} \left[ \log \sigma \left( \beta \log \frac{\pi_\theta(y_c|x)}{\pi_{\mathrm{ref}}(y_c|x)} - \beta \log \frac{\pi_\theta(y_r|x)}{\pi_{\mathrm{ref}}(y_r|x)} \right) \right]
+\end{aligned} \tag{106}
+$$
+
+這就是 DPO 的損失函數，即式 80 所示的形式。DPO 論文還有一個針對 Plackett-Luce 模型下目標的額外推導，但在實務中使用得少得多 [25]。
+
+#### 8.1.2.3 推導 BT DPO 梯度（Deriving the BT DPO Gradient）
+
+我們曾使用式 82 所示的 DPO 梯度來解釋模型如何學習的直覺。要推導它，我們必須對式 106 關於模型參數取梯度。
+
+$$
+\nabla_\theta \mathcal{L}_{\mathrm{DPO}}(\pi_\theta; \pi_{\mathrm{ref}}) = -\nabla_\theta \mathbb{E}_{(x, y_c, y_r) \sim \mathcal{D}} \left[ \log \sigma \left( \beta \log \frac{\pi_\theta(y_c|x)}{\pi_{\mathrm{ref}}(y_c|x)} - \beta \log \frac{\pi_\theta(y_r|x)}{\pi_{\mathrm{ref}}(y_r|x)} \right) \right] \tag{107}
+$$
+
+首先，上式可以被改寫。我們知道 sigmoid 函數的導數為 $\frac{d}{dx} \sigma(x) = \sigma(x)(1 - \sigma(x))$、對數的導數為 $\frac{d}{dx} \log x = \frac{1}{x}$，以及 sigmoid 的性質 $\sigma(-x) = 1 - \sigma(x)$，因此我們可以重整上面的方程式。
+
+首先，令 $u = \beta \log \frac{\pi_\theta(y_c|x)}{\pi_{\mathrm{ref}}(y_c|x)} - \beta \log \frac{\pi_\theta(y_r|x)}{\pi_{\mathrm{ref}}(y_r|x)}$（即 sigmoid 內部的表達式）。那麼，我們有
+
+$$
+\nabla_\theta \mathcal{L}_{\mathrm{DPO}}(\pi_\theta; \pi_{\mathrm{ref}}) = -\mathbb{E}_{(x, y_c, y_r) \sim \mathcal{D}} \left[ \frac{\sigma'(u)}{\sigma(u)} \nabla_\theta u \right] \tag{108}
+$$
+
+將其展開，並利用上述 sigmoid 與對數的表達式，就得到先前介紹過的梯度：
+
+$$
+-\mathbb{E}_{(x, y_c, y_r) \sim \mathcal{D}} \left[ \beta \sigma \left( \beta \log \frac{\pi_\theta(y_r|x)}{\pi_{\mathrm{ref}}(y_r|x)} - \beta \log \frac{\pi_\theta(y_c|x)}{\pi_{\mathrm{ref}}(y_c|x)} \right) \left[ \nabla_\theta \log \pi_\theta(y_c|x) - \nabla_\theta \log \pi_\theta(y_r|x) \right] \right] \tag{109}
+$$
+
+## 8.2 數值考量、弱點與替代方案（Numerical Concerns, Weaknesses, and Alternatives）
+
+為了解決 DPO 的弱點，人們提出了許多 DPO 演算法的變體。舉例來說，在沒有 rollout（推演）讓獎勵模型為生成結果評分的情況下，DPO 對每一對偏好資料一視同仁。而實際上，如第 11 章「偏好資料」所示，有許多方式可以擷取到比二元標籤更豐富的偏好資料。已有多種演算法被提出，用來重新平衡最佳化過程，使其不再對每一對資料等量齊觀。
+
+- **基於相對獎勵迴歸的 RL（REgression to RElative REward Based RL, REBEL）** 加入來自獎勵模型的訊號，以被選與被拒回應之間的差距（margin）形式呈現，而非僅依靠成對偏好資料，從而更準確地求解 RLHF 問題 [190]。
+- **保守 DPO（Conservative DPO, cDPO）與恆等偏好最佳化（Identity Preference Optimization, IPO）** 透過假設偏好資料中存在雜訊來處理過度擬合。cDPO 假設有 N% 的資料標記錯誤 [25]；IPO 則改變最佳化方式，將偏好機率軟化，而非直接依標籤進行最佳化 [191]。實務上，IPO 將偏好機率改為一個非線性函數，脫離 Bradley-Terry 假設，使用 $\Psi(q) = \log\left( \frac{q}{1-q} \right)$。
+- **帶偏移量的 DPO（DPO with an offset, ODPO）**「要求受偏好回應與不受偏好回應之間的似然差必須大於一個偏移值」[192]——不再對每一對資料等量齊觀，但這可能以更困難的標記環境為代價。
+
+有些 DPO 變體試圖透過對損失做小幅修改來改善學習訊號，或透過減少記憶體用量讓應用更有效率。
+
+- **勝算比策略最佳化（Odds Ratio Policy Optimization, ORPO）** 直接以「朝被選回應拉動」的方式更新策略模型，類似指令微調（instruction fine-tuning）損失，並對被選回應施加一個小的懲罰項 [193]。這種損失函數的改變移除了對參考模型的需求，簡化了整體設定。看待 ORPO 最好的方式是：它是受 DPO 啟發的方法，而非 DPO 的衍生物。
+- **簡單偏好最佳化（Simple Preference Optimization, SimPO）** 對 DPO 最佳化做了一個小改動：將對數機率取平均而非加總（或加入長度正規化），以提升效能 [194]。
+
+DPO 一個*顯而易見*的核心問題是：其最佳化只朝著「擴大被選回應與被拒回應機率之間的差距」推進。數值上，模型會同時降低被選與被拒回應的機率，但*被拒回應被降低的幅度更大*，如圖 27 所示。直覺上，我們並不清楚這會如何泛化，但已有研究提出這會提高「未處理行為」的機率——也就是那些語言模型可能生成、但不在後訓練資料集分布內的 token [195] [196]。一些簡單的方法——例如調整最佳化過程的 Cal-DPO [197]，以及修改獎勵形狀的 AlphaPO [198]——能緩解這種**偏好位移（preference displacement）**。實務上，這個現象的確切影響尚不為人所知，但它指向一個潛在原因，說明為什麼線上（online）方法可以勝過原始版本的 DPO。
+
+![圖](../webapp/assets/figures/fig-p113-1.png)
+*圖 27：DPO 中偏好位移的示意圖。*
+
+另一個被提出、用以解釋 DPO 類方法效能天花板低於線上（基於 RL 的）RLHF 方法的主要原因是：其訓練訊號來自先前模型或其他模型產生的補全。DPO 的線上變體透過在訓練時生成新的補全並納入偏好訊號，緩解了這些限制。**線上 DPO（Online DPO）**[199] 從當前模型抽樣生成結果，而**判別器引導的 DPO（Discriminator-Guided DPO, D2PO）**[200] 則使用獎勵模型重新標記，即時建立新的偏好資料——此外還存在許多其他變體。
+
+其他 DAA 變體還有一長串，例如直接納許最佳化（Direct Nash Optimization, DNO）[201] 或二元分類器最佳化（Binary Classifier Optimization, BCO）[202]，但演算法的選擇遠不如初始模型與所用資料重要 [6] [203] [204]。
+
+## 8.3 實作細節（Implementation Details）
+
+DPO 這類 DAA 的實作方式與策略梯度最佳化器截然不同。取自原始實作的 DPO 損失，大致可以總結如下 [25]：
+
+```python
+# 策略模型與凍結參考模型的對數機率差距
+pi_logratios = policy_chosen_logps - policy_rejected_logps
+ref_logratios = reference_chosen_logps - reference_rejected_logps
+
+# 對數比值之差：當策略將機率移向被選補全時為正
+logits = pi_logratios - ref_logratios
+
+# DPO 損失：負對數 sigmoid 驅使策略
+# 擴大被選與被拒之間的差距
+losses = -F.logsigmoid(beta * logits)
+
+# 隱式獎勵（已 detach —— 僅用於記錄）
+chosen_rewards = beta * (policy_chosen_logps - reference_chosen_logps).detach()
+rejected_rewards = beta * (policy_rejected_logps - reference_rejected_logps).detach()
+```
+
+這可以直接用於標準的語言模型訓練堆疊，因為這些資訊在模型的前向傳遞（forward pass）過程中就已經整理好了（只需再加上一個參考模型）。
+
+在大多數面向上，DAAs 更簡單、也是一種生活品質的提升，但它們也帶來一組不同的考量。
+
+1. **KL 散度是靜態的**：在 DPO 與其他演算法中，KL 散度是由 $\beta$ 參數顯式設定的，該參數為最佳化過程平衡了距離懲罰。這是因為 DPO 是在給定資料下，朝 RLHF 目標的*最適*解採取梯度步——它精確地步向由 $\beta$ 項所設定的解。另一方面，基於 RL 的最佳化器則是根據批次與近期資料來採取梯度步。
+2. **快取對數機率**：DPO 的簡單實作為了損失函數計算的方便，會同時對策略模型與參考模型做前向傳遞。然而，這會使記憶體用量翻倍，並導致 GPU 使用量增加。要避免這一點，可以先在訓練資料集上計算參考模型的對數機率，然後在逐批計算損失與更新參數時，重複使用這些快取的參考對數機率，將峰值記憶體用量降低 50%。
+
+## 8.4 使用合成偏好資料的 DAAs（DAAs with Synthetic Preference Data）
+
+如今，多數用於以 DAAs 進行偏好微調的熱門資料集，都是合成偏好（synthetic preferences）——由一個前沿模型（frontier model）評判其他模型的輸出誰勝誰負。著名的例子包括 UltraFeedback（此類別的第一個）[28]、Tülu 3（以擴充版的 UltraFeedback 方法論建立）[6]、SmolLM 3 的資料 [205]，或隨 Olmo 3 發布的 Dolci Pref 資料集 [18]。
+
+建構這些資料集的最佳實務仍在演進中。Tülu 3 及其 2024 年 11 月發表前後的相關資料集證明了：合成的成對偏好資料需要在某種意義上是「on-policy（同策略）」的——即部分補全是由你正在微調的那個模型生成的（同時混在一個更大的模型池中）。資料的這種 on-policy 特性確保了 DAA 會在模型實際生成的正確 token 空間內進行最佳化——因為這些損失函數是對比式（contrastive）的，不如指令微調那樣直接。後來，隨著 2025 年 Olmo 3 與 SmolLM 3 的發布，其他研究支持了一種不同的理論，稱為 Delta Learning。該理論主張：被選補全與被拒補全之間的*差異*，比確切使用哪些模型來產生補全對學習更重要 [206]。舉例來說，在上述兩個被引用的模型中，被選回應來自 Qwen 3 32B，被拒回應來自 Qwen 3 0.6B——兩組作者是同時且獨立地發展出這種配對方式的。
+
+整體而言，考量到實作的簡單性，以及相對於基於強化學習的偏好微調方法的強勁表現，以 DAAs 在合成偏好資料上訓練模型，是多數實務工作者應該起步的地方。使用大量合成偏好資料時還存在其他次要問題，例如評判補全的模型自身的偏誤。鑑於 GPT-4 等前沿模型已知具有長度偏誤（length bias）[79]，並偏好與自身相符的輸出 [207]（詳見第 12 章），資料集中「被選」部分的文字略微更有可能來自 OpenAI 的模型，或另一個風格與其相似的強大模型。
+
+在本節的最後，我們將說明這些方法如何改變被訓練模型的生成結果的直覺。從高層次來看，多數 DAAs 的最佳化目標是擴大「被選」與「被拒」補全機率之間的差距（某些較不流行的演算法會刻意稍微改變這些動態，但核心不變）。如本章先前所討論的（見圖 27），這通常意味著兩者的機率都會下降，但被拒回應下降的幅度更大。序列中的每個 token 會依據其對整體偏好差距的貢獻程度，收到不同的梯度（包括大小與方向），使最佳化器能辨識出哪些 token 對結果最重要。
+
+## 8.5 DAAs 與 RL 的比較：線上與離線資料（DAAs vs. RL: Online vs. Offline Data）
+
+概括來說，這場爭論可以歸結為一個問題：要用 RLHF 對齊語言模型，我們是否需要強化學習的內部機制——價值函數（value functions）、策略梯度等等？和多數以這種方式表述的問題一樣，這樣問過於簡化。當然，兩種方法都已相當成熟，但闡明其根本差異與效能版圖（performance manifolds）所在，仍然很重要。
+
+多份報告的結論是：基於策略梯度的方法與 RL 方法優於 DPO 及其變體。這些論證有不同形式：有的是在受控資料下以不同演算法訓練模型 [125] [165]，有的是研究 RL 最佳化迴圈中 on-policy 資料的角色 [208]。在所有這些案例中，DPO 演算法都稍微落後一步。
+
+即便存在這樣的效能差距，DAAs 因其簡單性仍被領先的模型廣泛使用。DAAs 提供了一個受控的環境，能快速迭代訓練資料與其他配置；而鑑於資料往往遠比演算法重要，使用 DPO 可以是很好的選擇。
+
+隨著以 RL 為主要訓練方式的推理模型（reasoning models）興起，更多投資將回流到以 RL 進行偏好調整。長期來看，這將提升 RL 基礎設施的穩健性，並鞏固 RL 相對於 DAAs 在「從人類回饋進行最佳化」上的這道優勢差距。
+
+## 8.6 建議實驗（Suggested Experiments）
+
+隨附程式碼 `code/direct_alignment/` 會在偏好資料上訓練 DPO 與數種相關損失。這是開始實驗偏好調整最容易上手的地方，因為整個設定是離線的：不需要獎勵模型伺服器，也不需要 rollout 迴圈。
+
+1. **在 UltraFeedback 上訓練一個小型 DPO。**
+
+   ```bash
+   cd code/
+   uv run python -m direct_alignment.train --loss dpo --max_samples 1000
+   ```
+
+   觀察 `loss`、`accuracy`、`margins`、`chosen_rewards` 與 `rejected_rewards`。主要的健全性檢查是：隱式獎勵差距（implicit reward margin）應朝預期方向移動，且模型的樣本生成不會崩壞。
+
+2. **比較 DPO、IPO 與長度正規化的 DPO。**
+
+   ```bash
+   cd code/
+   uv run python -m direct_alignment.train --config direct_alignment/configs/dpo.yaml
+   uv run python -m direct_alignment.train --config direct_alignment/configs/ipo.yaml
+   uv run python -m direct_alignment.train --config direct_alignment/configs/dpo_norm.yaml
+   ```
+
+   比較差距的尺度與學習率敏感度。IPO 的損失與 DPO 不在同一個數值尺度上，因此應透過 `accuracy` 與差距行為來解讀，而不是只看原始損失。
+
+3. **謹慎地嘗試無參考模型的變體。** 從各自的設定檔執行 SimPO 或 ORPO，然後檢視訓練期間記錄下來的生成樣本。這些損失對對數機率的尺度與學習率更敏感，這使它們成為有用的除錯練習。
+
+   ```bash
+   cd code/
+   uv run python -m direct_alignment.train --config direct_alignment/configs/simpo.yaml
+   uv run python -m direct_alignment.train --config direct_alignment/configs/orpo.yaml
+   ```
+
+4. **先改變資料，再改變損失。** 固定損失不動，改變 `--max_samples`、`--max_length` 或偏好資料集。如果結果的變動比在不同 DPO 類目標之間切換還大，這就是偏好調整領域一個核心主題的經驗性提醒：資料通常比小幅的演算法差異更具決定性。
+
+</script>
+<script src="../assets/marked.min.js"></script>
+<script src="../assets/katex/katex.min.js"></script>
+<script src="../assets/katex/auto-render.min.js"></script>
+<script src="../assets/widgets/ch08.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>
