@@ -116,12 +116,12 @@ INDEX_TMPL = """<!DOCTYPE html>
   <h1>從人類回饋中強化學習<br>Reinforcement Learning from Human Feedback</h1>
   <p class="sub">Nathan Lambert 著。一本聚焦語言模型的 RLHF 與後訓練（post-training）簡明導論：從指令微調、獎勵模型，到 PPO／GRPO、DPO、拒絕採樣與推理模型。每一章都附有互動實驗，邊玩邊懂核心概念。</p>
   <p class="sub" style="font-size:.82rem">由台灣 <a href="https://github.com/ai-twinkle">Twinkle AI Community</a> 翻譯維護的非官方社群翻譯版本。</p>
-  <p><a class="gh-star" href="https://github.com/ai-twinkle/rlhf-book-zh-tw" target="_blank" rel="noopener" data-gh-repo="ai-twinkle/rlhf-book-zh-tw"><span class="star-ico">★</span><span class="gh-label">GitHub 給我們一顆星</span><b class="gh-count" hidden></b></a></p>
   <div class="meta">
     <div><b>{n_ch}</b>章節</div>
     <div><b>{n_app}</b>附錄</div>
     <div><b>{n_fig}</b>插圖</div>
     <div><b>{n_lab}</b>互動實驗</div>
+    <a href="https://github.com/ai-twinkle/rlhf-book-zh-tw" target="_blank" rel="noopener" data-gh-repo="ai-twinkle/rlhf-book-zh-tw"><b class="gh-count">—</b>GitHub ★</a>
   </div>
 </section>
 <div class="grid-wrap">
